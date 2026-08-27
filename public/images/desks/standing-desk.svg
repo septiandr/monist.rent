@@ -1,21 +1,15 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="800" height="400" viewBox="0 0 800 400">
-  <defs>
-    <linearGradient id="top" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#e2e8f0"/>
-      <stop offset="100%" stop-color="#cbd5e1"/>
-    </linearGradient>
-  </defs>
-  <!-- desk top (parallelogram for front-top perspective) -->
-  <polygon points="120,160 680,160 720,130 80,130" fill="url(#top)" stroke="#94a3b8" stroke-width="2"/>
-  <!-- desk front edge -->
-  <rect x="120" y="160" width="560" height="14" rx="2" fill="#94a3b8"/>
-  <!-- left leg -->
-  <polygon points="160,174 155,280 163,280 170,174" fill="#64748b"/>
-  <!-- right leg -->
-  <polygon points="630,174 637,280 645,280 640,174" fill="#64748b"/>
-  <!-- control panel -->
-  <rect x="340" y="110" width="120" height="20" rx="6" fill="#0d9488" opacity="0.85"/>
-  <text x="400" y="124" font-family="system-ui,sans-serif" font-size="11" font-weight="600" fill="white" text-anchor="middle">▲ UP ▼ DOWN</text>
-  <!-- shadow -->
-  <ellipse cx="400" cy="310" rx="280" ry="12" fill="#94a3b8" opacity="0.15"/>
+  <!-- consistent 30° top-front angle for entire scene -->
+  <!-- desk top surface -->
+  <polygon points="100,100 700,100 740,140 60,140" fill="#e2e8f0" stroke="#94a3b8" stroke-width="2"/>
+  <!-- desk front face -->
+  <polygon points="60,140 740,140 740,155 60,155" fill="#cbd5e1"/>
+  <!-- desk legs -->
+  <rect x="100" y="155" width="10" height="100" rx="2" fill="#94a3b8"/>
+  <rect x="690" y="155" width="10" height="100" rx="2" fill="#94a3b8"/>
+  <!-- control panel on desk surface -->
+  <rect x="340" y="108" width="120" height="18" rx="5" fill="#0d9488" opacity="0.85"/>
+  <text x="400" y="121" font-family="system-ui,sans-serif" font-size="10" font-weight="600" fill="white" text-anchor="middle">▲ UP ▼ DOWN</text>
+  <!-- floor shadow -->
+  <ellipse cx="400" cy="270" rx="300" ry="15" fill="#94a3b8" opacity="0.1"/>
 </svg>

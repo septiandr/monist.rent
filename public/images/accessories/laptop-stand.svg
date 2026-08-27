@@ -1,14 +1,17 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200">
-  <!-- stand base (perspective) -->
-  <polygon points="40,130 160,130 165,125 35,125" fill="#94a3b8"/>
-  <polygon points="40,130 160,130 160,138 40,138" fill="#64748b"/>
-  <!-- angled support arms (front-top view) -->
-  <polygon points="50,125 70,70 75,72 55,127" fill="#64748b"/>
-  <polygon points="150,125 130,70 125,72 145,127" fill="#64748b"/>
-  <!-- laptop on stand (perspective) -->
-  <polygon points="55,70 145,70 150,65 50,65" fill="#334155"/>
-  <rect x="55" y="70" width="90" height="55" rx="3" fill="#1e293b"/>
-  <rect x="60" y="75" width="80" height="45" rx="2" fill="#0f172a"/>
-  <!-- screen glow -->
-  <rect x="65" y="80" width="30" height="3" rx="1" fill="#334155" opacity="0.5"/>
+  <!-- same 30° top-front angle -->
+  <!-- base (ellipse from above) -->
+  <ellipse cx="100" cy="128" rx="58" ry="16" fill="#94a3b8"/>
+  <!-- base front face -->
+  <polygon points="42,128 158,128 158,136 42,136" fill="#64748b"/>
+  <!-- support arms -->
+  <polygon points="52,125 70,62 76,64 58,127" fill="#64748b"/>
+  <polygon points="148,125 130,62 124,64 142,127" fill="#64748b"/>
+  <!-- laptop top surface -->
+  <polygon points="45,62 155,62 162,52 38,52" fill="#334155"/>
+  <!-- laptop front face -->
+  <rect x="45" y="62" width="110" height="55" rx="3" fill="#1e293b"/>
+  <rect x="50" y="67" width="100" height="45" rx="2" fill="#0f172a"/>
+  <!-- screen glare -->
+  <rect x="55" y="72" width="40" height="3" rx="1" fill="#334155" opacity="0.4"/>
 </svg>

@@ -1,11 +1,13 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200">
-  <!-- monitor (front-top view) -->
-  <polygon points="25,50 175,50 185,40 15,40" fill="#334155"/>
-  <rect x="25" y="50" width="150" height="85" rx="4" fill="#1e293b"/>
-  <rect x="30" y="55" width="140" height="75" rx="2" fill="#0f172a"/>
+  <!-- same 30° top-front angle -->
+  <!-- monitor top surface -->
+  <polygon points="15,50 185,50 190,42 10,42" fill="#334155"/>
+  <!-- monitor front face -->
+  <rect x="15" y="50" width="170" height="85" rx="4" fill="#1e293b"/>
+  <rect x="20" y="55" width="160" height="75" rx="2" fill="#0f172a"/>
   <!-- screen glare -->
-  <rect x="35" y="60" width="40" height="3" rx="1" fill="#334155" opacity="0.5"/>
+  <rect x="25" y="60" width="50" height="3" rx="1" fill="#334155" opacity="0.4"/>
   <!-- stand -->
-  <polygon points="90,135 110,135 115,155 85,155" fill="#475569"/>
-  <rect x="75" y="155" width="50" height="6" rx="2" fill="#64748b"/>
+  <polygon points="85,135 115,135 120,155 80,155" fill="#475569"/>
+  <ellipse cx="100" cy="160" rx="25" ry="7" fill="#64748b"/>
 </svg>

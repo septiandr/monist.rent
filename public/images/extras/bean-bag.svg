@@ -1,9 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 120 120">
-  <!-- bean bag (front-top perspective, rounded blob) -->
-  <ellipse cx="60" cy="70" rx="45" ry="28" fill="#f97316" opacity="0.6"/>
-  <ellipse cx="60" cy="65" rx="40" ry="24" fill="#fb923c" opacity="0.55"/>
-  <!-- top contour -->
-  <ellipse cx="55" cy="55" rx="25" ry="15" fill="#fdba74" opacity="0.4"/>
-  <!-- shadow -->
-  <ellipse cx="60" cy="95" rx="35" ry="6" fill="#f97316" opacity="0.12"/>
+  <ellipse cx="60" cy="62" rx="50" ry="32" fill="#f97316" opacity="0.5"/>
+  <ellipse cx="60" cy="56" rx="44" ry="28" fill="#fb923c" opacity="0.45"/>
+  <ellipse cx="55" cy="48" rx="30" ry="18" fill="#fdba74" opacity="0.3"/>
+  <ellipse cx="60" cy="90" rx="40" ry="7" fill="#f97316" opacity="0.08"/>
 </svg>

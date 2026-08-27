@@ -1,22 +1,25 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="400" height="500" viewBox="0 0 400 500">
-  <!-- backrest (tall, leather, front-top perspective) -->
-  <path d="M130,60 Q200,40 270,60 L265,210 Q200,225 135,210 Z" fill="#78350f" stroke="#5a2d0c" stroke-width="2"/>
+  <!-- same 30° top-front angle -->
+  <!-- backrest -->
+  <path d="M110,50 Q200,30 290,50 L285,185 Q200,200 115,185 Z" fill="#78350f" stroke="#5a2d0c" stroke-width="2"/>
   <!-- headrest -->
-  <path d="M150,50 Q200,35 250,50 L248,85 Q200,95 152,85 Z" fill="#92400e" stroke="#78350f" stroke-width="1.5"/>
-  <!-- stitching lines -->
-  <line x1="200" y1="60" x2="200" y2="210" stroke="#a16207" stroke-width="1" stroke-dasharray="4,4"/>
-  <!-- seat (perspective) -->
-  <polygon points="120,220 280,220 300,210 100,210" fill="#92400e"/>
-  <polygon points="120,220 280,220 280,245 120,245" fill="#78350f"/>
+  <path d="M140,40 Q200,25 260,40 L258,75 Q200,85 142,75 Z" fill="#92400e" stroke="#78350f" stroke-width="1.5"/>
+  <!-- stitching -->
+  <line x1="200" y1="50" x2="200" y2="185" stroke="#a16207" stroke-width="1" stroke-dasharray="4,4"/>
+  <!-- seat top surface -->
+  <polygon points="100,195 300,195 325,182 75,182" fill="#92400e"/>
+  <!-- seat front face -->
+  <polygon points="75,182 325,182 325,200 75,200" fill="#78350f"/>
   <!-- armrests -->
-  <rect x="100" y="205" width="30" height="10" rx="4" fill="#5a2d0c"/>
-  <rect x="270" y="205" width="30" height="10" rx="4" fill="#5a2d0c"/>
+  <rect x="72" y="182" width="32" height="10" rx="4" fill="#5a2d0c"/>
+  <rect x="296" y="182" width="32" height="10" rx="4" fill="#5a2d0c"/>
   <!-- stem -->
-  <rect x="190" y="245" width="20" height="55" rx="4" fill="#44403c"/>
+  <rect x="190" y="200" width="20" height="50" rx="4" fill="#44403c"/>
   <!-- base -->
-  <ellipse cx="200" cy="340" rx="70" ry="20" fill="none" stroke="#44403c" stroke-width="3"/>
+  <ellipse cx="200" cy="290" rx="65" ry="22" fill="none" stroke="#44403c" stroke-width="3"/>
   <!-- wheels -->
-  <circle cx="140" cy="350" r="8" fill="#292524"/>
-  <circle cx="200" cy="360" r="8" fill="#292524"/>
-  <circle cx="260" cy="350" r="8" fill="#292524"/>
+  <circle cx="145" cy="300" r="8" fill="#292524"/>
+  <circle cx="175" cy="313" r="8" fill="#292524"/>
+  <circle cx="225" cy="313" r="8" fill="#292524"/>
+  <circle cx="255" cy="300" r="8" fill="#292524"/>
 </svg>
