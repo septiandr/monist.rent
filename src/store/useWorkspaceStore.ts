@@ -1,11 +1,13 @@
 import { create } from "zustand";
-import type { Desk, Chair, Accessory, WorkspaceState, ItemSummary } from "@/types";
+import type { Desk, Chair, Accessory, ExtraItem, WorkspaceState, ItemSummary } from "@/types";
 
 export const useWorkspaceStore = create<WorkspaceState>((set, get) => ({
   selectedDesk: null,
   selectedChair: null,
   selectedAccessories: [],
+  selectedExtras: [],
   isCheckoutOpen: false,
+  activeTab: "chairs",
 
   selectDesk: (desk: Desk) => set({ selectedDesk: desk }),
 
@@ -20,25 +22,39 @@ export const useWorkspaceStore = create<WorkspaceState>((set, get) => ({
         : [...state.selectedAccessories, accessory],
     })),
 
+  toggleExtra: (extra: ExtraItem) =>
+    set((state) => ({
+      selectedExtras: state.selectedExtras.some((e) => e.id === extra.id)
+        ? state.selectedExtras.filter((e) => e.id !== extra.id)
+        : [...state.selectedExtras, extra],
+    })),
+
   openCheckout: () => set({ isCheckoutOpen: true }),
 
   closeCheckout: () => set({ isCheckoutOpen: false }),
 
+  setActiveTab: (tab) => set({ activeTab: tab }),
+
   getTotalPrice: (): number => {
-    const { selectedDesk, selectedChair, selectedAccessories } = get();
+    const { selectedDesk, selectedChair, selectedAccessories, selectedExtras } = get();
     const accessoryTotal = selectedAccessories.reduce(
       (sum, acc) => sum + acc.pricePerMonth,
+      0
+    );
+    const extrasTotal = selectedExtras.reduce(
+      (sum, ext) => sum + ext.pricePerMonth,
       0
     );
     return (
       (selectedDesk?.pricePerMonth ?? 0) +
       (selectedChair?.pricePerMonth ?? 0) +
-      accessoryTotal
+      accessoryTotal +
+      extrasTotal
     );
   },
 
   getSelectedItemSummary: (): ItemSummary[] => {
-    const { selectedDesk, selectedChair, selectedAccessories } = get();
+    const { selectedDesk, selectedChair, selectedAccessories, selectedExtras } = get();
     const summary: ItemSummary[] = [];
 
     if (selectedDesk) {
@@ -65,6 +81,16 @@ export const useWorkspaceStore = create<WorkspaceState>((set, get) => ({
         name: acc.name,
         type: "accessory",
         pricePerMonth: acc.pricePerMonth,
+      });
+    });
+
+    selectedExtras.forEach((ext) => {
+      summary.push({
+        id: ext.id,
+        name: ext.name,
+        type: "extra",
+        section: ext.section,
+        pricePerMonth: ext.pricePerMonth,
       });
     });
 

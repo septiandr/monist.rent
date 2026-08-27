@@ -31,10 +31,20 @@ export type AccessoryCategory = "monitor" | "lighting" | "greenery" | "other";
 
 export type AccessoryPosition = "left" | "right" | "center";
 
+export interface ExtraItem {
+  id: string;
+  name: string;
+  description: string;
+  section: "coffee" | "outdoor" | "relax" | "garage";
+  pricePerMonth: number;
+  image: string;
+}
+
 export interface ItemSummary {
   id: string;
   name: string;
-  type: "desk" | "chair" | "accessory";
+  type: "desk" | "chair" | "accessory" | "extra";
+  section?: string;
   pricePerMonth: number;
 }
 
@@ -42,13 +52,17 @@ export interface WorkspaceState {
   selectedDesk: Desk | null;
   selectedChair: Chair | null;
   selectedAccessories: Accessory[];
+  selectedExtras: ExtraItem[];
   isCheckoutOpen: boolean;
+  activeTab: "chairs" | "desks" | "accessories";
 
   selectDesk: (desk: Desk) => void;
   selectChair: (chair: Chair) => void;
   toggleAccessory: (accessory: Accessory) => void;
+  toggleExtra: (extra: ExtraItem) => void;
   openCheckout: () => void;
   closeCheckout: () => void;
+  setActiveTab: (tab: "chairs" | "desks" | "accessories") => void;
   getTotalPrice: () => number;
   getSelectedItemSummary: () => ItemSummary[];
 }

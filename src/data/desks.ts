@@ -8,7 +8,7 @@ export const desks: Desk[] = [
     dimensions: "120cm x 60cm x 75-120cm",
     features: ["Electric height adjustable", "Cable management", "Memory presets"],
     pricePerMonth: 450000,
-    image: "/images/desks/standing-desk.jpg",
+    image: "/images/desks/standing-desk.svg",
   },
   {
     id: "desk-wooden",
@@ -17,6 +17,6 @@ export const desks: Desk[] = [
     dimensions: "110cm x 55cm x 75cm",
     features: ["Solid teak wood", "Compact design", "Drawer included"],
     pricePerMonth: 350000,
-    image: "/images/desks/wooden-desk.jpg",
+    image: "/images/desks/wooden-desk.svg",
   },
 ];

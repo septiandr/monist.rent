@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 120 120">
+  <!-- body (perspective) -->
+  <polygon points="35,35 85,35 83,90 37,90" fill="#78350f"/>
+  <!-- top (perspective) -->
+  <polygon points="33,35 87,35 90,30 30,30" fill="#92400e"/>
+  <!-- hopper (transparent top) -->
+  <polygon points="45,20 75,20 80,30 40,30" fill="#a16207" opacity="0.5"/>
+  <!-- dial -->
+  <circle cx="60" cy="60" r="12" fill="#475569"/>
+  <circle cx="60" cy="60" r="6" fill="#64748b"/>
+  <!-- catch tray -->
+  <rect x="42" y="82" width="36" height="5" rx="2" fill="#64748b"/>
+</svg>

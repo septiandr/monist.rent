@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="500" viewBox="0 0 400 500">
+  <!-- backrest (front-top view - wider at top) -->
+  <path d="M140,80 Q200,60 260,80 L255,200 Q200,210 145,200 Z" fill="#e2e8f0" stroke="#94a3b8" stroke-width="2"/>
+  <!-- mesh lines -->
+  <line x1="160" y1="100" x2="160" y2="190" stroke="#cbd5e1" stroke-width="1"/>
+  <line x1="180" y1="90" x2="180" y2="195" stroke="#cbd5e1" stroke-width="1"/>
+  <line x1="200" y1="85" x2="200" y2="198" stroke="#cbd5e1" stroke-width="1"/>
+  <line x1="220" y1="90" x2="220" y2="195" stroke="#cbd5e1" stroke-width="1"/>
+  <line x1="240" y1="100" x2="240" y2="190" stroke="#cbd5e1" stroke-width="1"/>
+  <!-- seat cushion (perspective) -->
+  <polygon points="130,210 270,210 290,200 110,200" fill="#94a3b8"/>
+  <polygon points="130,210 270,210 270,230 130,230" fill="#64748b"/>
+  <!-- armrests -->
+  <rect x="110" y="195" width="25" height="8" rx="3" fill="#475569"/>
+  <rect x="265" y="195" width="25" height="8" rx="3" fill="#475569"/>
+  <!-- stem -->
+  <rect x="190" y="230" width="20" height="60" rx="4" fill="#64748b"/>
+  <!-- base star -->
+  <ellipse cx="200" cy="330" rx="70" ry="20" fill="none" stroke="#64748b" stroke-width="3"/>
+  <!-- wheels -->
+  <circle cx="140" cy="340" r="8" fill="#334155"/>
+  <circle cx="200" cy="350" r="8" fill="#334155"/>
+  <circle cx="260" cy="340" r="8" fill="#334155"/>
+  <circle cx="140" cy="340" r="4" fill="#64748b"/>
+  <circle cx="200" cy="350" r="4" fill="#64748b"/>
+  <circle cx="260" cy="340" r="4" fill="#64748b"/>
+</svg>

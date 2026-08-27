@@ -7,7 +7,7 @@ export const accessories: Accessory[] = [
     description: "Layar ultrawide untuk produktivitas multi-tasking",
     category: "monitor",
     pricePerMonth: 600000,
-    image: "/images/accessories/ultrawide-monitor.jpg",
+    image: "/images/accessories/ultrawide-monitor.svg",
     position: "center",
   },
   {
@@ -16,7 +16,7 @@ export const accessories: Accessory[] = [
     description: "Dua monitor untuk workflow yang lebih luas",
     category: "monitor",
     pricePerMonth: 800000,
-    image: "/images/accessories/dual-monitor.jpg",
+    image: "/images/accessories/dual-monitor.svg",
     position: "center",
   },
   {
@@ -25,7 +25,7 @@ export const accessories: Accessory[] = [
     description: "Lampu meja LED adjustable dengan multiple brightness",
     category: "lighting",
     pricePerMonth: 75000,
-    image: "/images/accessories/desk-lamp.jpg",
+    image: "/images/accessories/desk-lamp.svg",
     position: "left",
   },
   {
@@ -34,7 +34,7 @@ export const accessories: Accessory[] = [
     description: "Tanaman hias untuk suasana workspace yang segar",
     category: "greenery",
     pricePerMonth: 50000,
-    image: "/images/accessories/plant.jpg",
+    image: "/images/accessories/plant.svg",
     position: "right",
   },
   {
@@ -43,7 +43,7 @@ export const accessories: Accessory[] = [
     description: "Desk mat ekstra large untuk mouse dan keyboard",
     category: "other",
     pricePerMonth: 40000,
-    image: "/images/accessories/desk-mat.jpg",
+    image: "/images/accessories/desk-mat.svg",
     position: "center",
   },
   {
@@ -52,7 +52,7 @@ export const accessories: Accessory[] = [
     description: "Dudukan laptop ergonomis adjustable angle",
     category: "other",
     pricePerMonth: 60000,
-    image: "/images/accessories/laptop-stand.jpg",
+    image: "/images/accessories/laptop-stand.svg",
     position: "left",
   },
 ];

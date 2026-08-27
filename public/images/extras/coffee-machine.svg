@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 120 120">
+  <!-- body (perspective - wider top) -->
+  <polygon points="30,40 90,40 88,95 32,95" fill="#78350f"/>
+  <!-- top (perspective) -->
+  <polygon points="28,40 92,40 95,35 25,35" fill="#92400e"/>
+  <!-- water tank -->
+  <rect x="70" y="20" width="20" height="20" rx="3" fill="#475569" opacity="0.6"/>
+  <!-- drip tray -->
+  <rect x="40" y="85" width="40" height="6" rx="2" fill="#64748b"/>
+  <!-- cup -->
+  <ellipse cx="60" cy="78" rx="10" ry="4" fill="#fbbf24" opacity="0.7"/>
+</svg>

@@ -48,15 +48,18 @@ src/
 │   │   ├── ControlPanel.tsx    # Left panel container with tab navigation
 │   │   ├── DeskTab.tsx         # Desk selection tab content
 │   │   ├── ChairTab.tsx        # Chair selection tab content
-│   │   └── AccessoryTab.tsx    # Accessory add-ons tab content
+│   │   ├── AccessoryTab.tsx    # Accessory add-ons tab content
+│   │   └── CategorySection.tsx # Reusable horizontal scroll section (used for extra categories)
 │   ├── preview/
 │   │   ├── VisualCanvas.tsx    # Right panel: live workspace preview canvas
 │   │   ├── DeskRenderer.tsx    # Renders the selected desk image on canvas
 │   │   ├── ChairRenderer.tsx   # Renders the selected chair image on canvas
 │   │   └── AccessoryRenderer.tsx # Renders toggleable accessories on canvas
 │   ├── summary/
-│   │   ├── SummaryBar.tsx      # Bottom sticky bar showing total cost
-│   │   └── CheckoutModal.tsx   # Full summary modal with itemized breakdown + "Rent Now"
+│   │   ├── SummaryBar.tsx      # Sticky bar with "Ready to Rent?" prompt
+│   │   └── CheckoutModal.tsx   # Full summary modal with itemized breakdown + "Sewa Sekarang"
+│   ├── categories/
+│   │   └── ExtraCategories.tsx # Horizontal scroll sections: Coffee Station, Outdoor Gear, etc.
 │   └── ui/
 │       ├── OptionCard.tsx      # Reusable card for selecting an item (desk/chair)
 │       ├── AccessoryToggle.tsx # Toggle switch for adding/removing an accessory
@@ -64,7 +67,8 @@ src/
 ├── data/
 │   ├── desks.ts               # Desk product data
 │   ├── chairs.ts              # Chair product data
-│   └── accessories.ts         # Accessory product data
+│   ├── accessories.ts         # Workspace accessory data
+│   └── extras.ts              # Extra category data (Coffee Station, Outdoor Gear, etc.)
 ├── store/
 │   └── useWorkspaceStore.ts   # Zustand store for workspace state
 ├── types/
@@ -75,9 +79,42 @@ src/
 
 ---
 
-## 4. Data Models
+## 4. Page Layout (Wireframe Reference)
 
-### 4.1 Product Types
+```
+┌─────────────────────────────────────────────────────────────────────────┐
+│                    Design Your Workspace!                               │
+│                  — Create Your Perfect Setup! —                         │
+├─────────────────────────────────────────────────────────────────────────┤
+│  LEFT PANEL (40%)             │  RIGHT PANEL (60%)                      │
+│  ┌─────────────────────────┐  │  ┌───────────────────────────────────┐  │
+│  │ [Chairs] [Desks] [Acc]  │  │  │                                   │  │
+│  │                         │  │  │      VISUAL CANVAS                │  │
+│  │  ┌───┐ ┌───┐ ┌───┐     │  │  │                                   │  │
+│  │  │ 🪑│ │ 🪑│ │ 🪑│     │  │  │   [Desk] + [Chair] + [Accessories]│  │
+│  │  └───┘ └───┘ └───┘     │  │  │                                   │  │
+│  │  ┌───┐ ┌───┐ ┌───┐     │  │  │   Positioned as layers           │  │
+│  │  │🖥️│ │🖥️│ │🖥️│     │  │  │                                   │  │
+│  │  └───┘ └───┘ └───┘     │  │  │                                   │  │
+│  └─────────────────────────┘  │  └───────────────────────────────────┘  │
+├─────────────────────────────────────────────────────────────────────────┤
+│  ┌─────────────────────────────────────────────────────────────────────┐│
+│  │              Ready to Rent?  [Rent Your Setup!]                     ││
+│  └─────────────────────────────────────────────────────────────────────┘│
+├─────────────────────────────────────────────────────────────────────────┤
+│  ┌──────────────────┐ ┌──────────────────┐ ┌──────────────────┐ ┌────┐ │
+│  │ Coffee Station   │ │ Outdoor Gear     │ │ Relax Zone       │ │Gar │ │
+│  │ [☕] [🖥️]       │ │ [🏄] [🏍️]       │ │ [🫘] [🛋️]      │ │[🔧]│ │
+│  │ +Add Coffee Mac..│ │ +Add Surfboard   │ │ +Add Bean Bag    │ │+Add│ │
+│  └──────────────────┘ └──────────────────┘ └──────────────────┘ └────┘ │
+└─────────────────────────────────────────────────────────────────────────┘
+```
+
+---
+
+## 5. Data Models
+
+### 5.1 Core Product Types
 
 ```typescript
 // types/index.ts
@@ -110,56 +147,77 @@ export interface Accessory {
   image: string;
   position: "left" | "right" | "center"; // where it renders on the canvas
 }
+
+export interface ExtraItem {
+  id: string;
+  name: string;
+  description: string;
+  section: "coffee" | "outdoor" | "relax" | "garage";
+  pricePerMonth: number;
+  image: string;
+}
 ```
 
-### 4.2 Store State
+### 5.2 Store State
 
 ```typescript
 // store/useWorkspaceStore.ts
 
 interface WorkspaceState {
+  // Core selections
   selectedDesk: Desk | null;
-  selectedChair: Desk | null;
+  selectedChair: Chair | null;
   selectedAccessories: Accessory[];
+
+  // Extra category selections
+  selectedExtras: ExtraItem[];
+
+  // UI state
   isCheckoutOpen: boolean;
+  activeTab: "chairs" | "desks" | "accessories";
 
   // Actions
   selectDesk: (desk: Desk) => void;
   selectChair: (chair: Chair) => void;
   toggleAccessory: (accessory: Accessory) => void;
+  toggleExtra: (extra: ExtraItem) => void;
   openCheckout: () => void;
   closeCheckout: () => void;
-  getTotalPrice: () => number;      // computed: desk + chair + all accessories
+  setActiveTab: (tab: "chairs" | "desks" | "accessories") => void;
+
+  // Computed
+  getTotalPrice: () => number;
   getSelectedItemSummary: () => ItemSummary[];
 }
 
 interface ItemSummary {
   id: string;
   name: string;
-  type: "desk" | "chair" | "accessory";
+  type: "desk" | "chair" | "accessory" | "extra";
+  section?: string;           // for extras: "coffee", "outdoor", "relax", "garage"
   pricePerMonth: number;
 }
 ```
 
 ---
 
-## 5. Product Data (Mock Data)
+## 6. Product Data (Mock Data)
 
-### 5.1 Desks
+### 6.1 Desks
 
 | ID               | Name                   | Dimensions             | Price/Month (IDR) | Features                                      |
 |------------------|------------------------|------------------------|--------------------|-----------------------------------------------|
 | `desk-standing`  | Standing Desk Pro      | 120cm x 60cm x 75-120cm | 450,000           | Electric height adjustable, Cable management, Memory presets |
 | `desk-wooden`    | Minimalist Wooden Desk | 110cm x 55cm x 75cm   | 350,000            | Solid teak wood, Compact design, Drawer included |
 
-### 5.2 Chairs
+### 6.2 Chairs
 
 | ID               | Name                     | Price/Month (IDR) | Ergonomic Highlights                              |
 |------------------|--------------------------|--------------------|---------------------------------------------------|
 | `chair-mesh`     | Ergonomic Mesh Chair     | 300,000            | Breathable mesh back, Lumbar support, Adjustable height |
 | `chair-executive`| Executive Leather Chair  | 500,000            | Premium leather, Full lumbar + headrest, Tilt mechanism |
 
-### 5.3 Accessories
+### 6.3 Workspace Accessories
 
 | ID                      | Name                   | Category  | Price/Month (IDR) | Canvas Position |
 |-------------------------|------------------------|-----------|--------------------|-----------------|
@@ -170,191 +228,329 @@ interface ItemSummary {
 | `acc-desk-mat`          | XL Desk Mat            | other     | 40,000             | center          |
 | `acc-laptop-stand`      | Laptop Stand           | other     | 60,000             | left            |
 
-> **Note:** When "Dual Monitor Setup" is selected, "UltraWide Monitor 34" must be disabled (mutually exclusive).
+> **Mutual Exclusion:** "Dual Monitor Setup" and "UltraWide Monitor 34" are mutually exclusive. Selecting one disables the other.
+
+### 6.4 Extra Categories (Below Builder)
+
+#### Coffee Station
+| ID                    | Name              | Price/Month (IDR) |
+|-----------------------|-------------------|--------------------|
+| `extra-coffee-machine`| Coffee Machine    | 200,000            |
+| `extra-coffee-grinder`| Coffee Grinder    | 75,000             |
+
+#### Outdoor Gear
+| ID                    | Name              | Price/Month (IDR) |
+|-----------------------|-------------------|--------------------|
+| `extra-surfboard`     | Surfboard         | 300,000            |
+| `extra-motorcycle`    | Scooter Rental    | 800,000            |
+
+#### Relax Zone
+| ID                    | Name              | Price/Month (IDR) |
+|-----------------------|-------------------|--------------------|
+| `extra-bean-bag`      | Bean Bag Chair    | 150,000            |
+| `extra-floor-cushion` | Floor Cushion     | 75,000             |
+
+#### Garage Space
+| ID                    | Name              | Price/Month (IDR) |
+|-----------------------|-------------------|--------------------|
+| `extra-tool-shelf`    | Tool Shelf        | 120,000            |
+| `extra-storage-box`   | Storage Box       | 80,000             |
 
 ---
 
-## 6. Core Features & Requirements
+## 7. Core Features & Requirements
 
-### 6.1 Feature: Desk Selection
+### 7.1 Feature: Page Header
+- **Location:** `page.tsx` (above the split layout)
+- Display the heading: "Design Your Workspace!"
+- Display the subtitle: "Create Your Perfect Setup!" with decorative em dashes or line on both sides.
+
+**Acceptance Criteria:**
+- [ ] Header is centered at the top of the page.
+- [ ] Heading uses large bold typography (`text-3xl` to `text-4xl`).
+- [ ] Subtitle is smaller and centered below the heading.
+
+---
+
+### 7.2 Feature: Tab Navigation (Left Panel)
+- **Location:** `ControlPanel.tsx`
+- Three tabs: **Chairs**, **Desks**, **Accessories**.
+- Tabs are rendered as horizontal buttons at the top of the left panel.
+- Active tab is visually highlighted (e.g., filled background or underline).
+- Only one tab is active at a time.
+
+**Acceptance Criteria:**
+- [ ] All three tabs are visible.
+- [ ] Clicking a tab switches the panel content below.
+- [ ] Active tab has a distinct visual indicator.
+- [ ] Default active tab is "Chairs".
+
+---
+
+### 7.3 Feature: Desk Selection
 - **Location:** `ControlPanel.tsx` > `DeskTab.tsx`
-- Display a list of `OptionCard` components, one per desk.
+- Display a grid (2–3 columns) of `OptionCard` components, one per desk.
 - Each card shows: desk image, name, dimensions, features (as bullet list), and price/month.
 - Only one desk can be selected at a time (radio behavior).
 - Selecting a desk immediately updates the preview canvas.
 
 **Acceptance Criteria:**
-- [ ] At least 2 desk options are displayed.
-- [ ] Clicking a desk card selects it (visual highlight on the card).
+- [ ] At least 2 desk options are displayed in a grid.
+- [ ] Clicking a desk card selects it (visual highlight: ring/border).
+- [ ] Previously selected desk is deselected automatically.
 - [ ] The preview canvas updates to show the selected desk.
 - [ ] The summary bar updates with the desk price.
 
-### 6.2 Feature: Chair Selection
+---
+
+### 7.4 Feature: Chair Selection
 - **Location:** `ControlPanel.tsx` > `ChairTab.tsx`
-- Display a list of `OptionCard` components, one per chair.
+- Display a grid (2–3 columns) of `OptionCard` components, one per chair.
 - Each card shows: chair image, name, ergonomic highlights (as bullet list), and price/month.
 - Only one chair can be selected at a time (radio behavior).
 - Selecting a chair immediately updates the preview canvas.
 
 **Acceptance Criteria:**
-- [ ] At least 2 chair options are displayed.
-- [ ] Clicking a chair card selects it (visual highlight on the card).
+- [ ] At least 2 chair options are displayed in a grid.
+- [ ] Clicking a chair card selects it (visual highlight: ring/border).
+- [ ] Previously selected chair is deselected automatically.
 - [ ] The preview canvas updates to show the selected chair.
 - [ ] The summary bar updates with the chair price.
 
-### 6.3 Feature: Accessory Add-ons
+---
+
+### 7.5 Feature: Accessory Add-ons
 - **Location:** `ControlPanel.tsx` > `AccessoryTab.tsx`
 - Display a list of `AccessoryToggle` components, one per accessory.
 - Each toggle shows: accessory image, name, description, and price/month.
-- Users can add or remove multiple accessories (checkbox/multi-select behavior).
-- Mutual exclusion: if "UltraWide Monitor" is selected, "Dual Monitor" is disabled, and vice versa.
+- Users can add or remove multiple accessories (multi-select).
+- Mutual exclusion: if "UltraWide Monitor" is selected, "Dual Monitor" is disabled (and vice versa).
 
 **Acceptance Criteria:**
-- [ ] All 6 accessories are listed with toggle controls.
+- [ ] All 6 workspace accessories are listed.
 - [ ] Toggling ON adds the accessory to the preview canvas.
 - [ ] Toggling OFF removes the accessory from the preview canvas.
 - [ ] Selecting one monitor type disables the other monitor type.
 - [ ] The summary bar updates dynamically with each accessory change.
 
-### 6.4 Feature: Live Visual Preview
+---
+
+### 7.6 Feature: Live Visual Preview (Canvas)
 - **Location:** `VisualCanvas.tsx` with child renderers (`DeskRenderer`, `ChairRenderer`, `AccessoryRenderer`)
 - Central canvas area occupying the right panel of the split layout.
-- Renders layered images: desk as the base, chair in front of the desk, accessories positioned by their `position` property.
+- Renders layered images: desk as the base, chair in front of the desk, accessories positioned by their `position` property (left/center/right).
 - Smooth transitions when items are swapped (Framer Motion `AnimatePresence`).
+
+**Canvas Layer Order (back to front):**
+1. Background (neutral/gradient)
+2. Desk (center)
+3. Chair (center, in front of desk)
+4. Accessories (positioned: left, center, right)
 
 **Acceptance Criteria:**
 - [ ] The canvas shows the selected desk as the base layer.
 - [ ] The chair renders on top of / in front of the desk.
 - [ ] Accessories render at their designated positions (left/center/right).
-- [ ] Item transitions are animated (fade or slide).
-- [ ] If no item is selected for a category, that layer is hidden gracefully (placeholder text or icon).
-
-### 6.5 Feature: Summary Bar (Sticky Bottom)
-- **Location:** `SummaryBar.tsx`
-- Sticky bar fixed at the bottom of the viewport.
-- Shows: count of selected items and total monthly cost formatted in IDR (e.g., "Rp 1.250.000/bulan").
-- Contains a "Checkout" / "Lihat Ringkasan" button that opens the checkout modal.
-
-**Acceptance Criteria:**
-- [ ] The bar is always visible at the bottom when scrolling.
-- [ ] Total price recalculates instantly on any selection change.
-- [ ] Currency is formatted in Indonesian Rupiah (IDR) with thousand separators.
-- [ ] Clicking the checkout button opens the `CheckoutModal`.
-
-### 6.6 Feature: Checkout Modal
-- **Location:** `CheckoutModal.tsx`
-- Full-screen overlay modal with a close button (X).
-- Content:
-  - **Header:** "Ringkasan Sewa Anda" (Your Rental Summary)
-  - **Itemized list:** Each selected item with name, type, and price/month.
-  - **Divider**
-  - **Total:** Bold, larger text showing total monthly cost.
-  - **Call-to-Action:** "Sewa Sekarang" (Rent Now) button.
-- Clicking "Sewa Sekarang" shows a success confirmation (e.g., toast or mini-modal: "Terima kasih! Tim kami akan menghubungi Anda.").
-
-**Acceptance Criteria:**
-- [ ] Modal opens when the checkout button is clicked.
-- [ ] All selected items are listed with correct prices.
-- [ ] Total is calculated and displayed correctly.
-- [ ] Modal can be closed via X button or clicking outside.
-- [ ] Clicking "Sewa Sekarang" shows a success message, then closes the modal.
+- [ ] Item transitions are animated (fade + slight y-translate).
+- [ ] If no item is selected for a category, that layer is hidden gracefully (placeholder or empty).
+- [ ] Canvas remains visually balanced regardless of which items are selected.
 
 ---
 
-## 7. User Flow
+### 7.7 Feature: Ready to Rent Bar
+- **Location:** `SummaryBar.tsx`
+- Horizontal bar below the split layout and above the extra categories.
+- Display text: "Ready to Rent?"
+- Display a prominent CTA button: "Rent Your Setup!"
+- Clicking the button opens the checkout modal.
+
+**Acceptance Criteria:**
+- [ ] The bar spans the full width of the page.
+- [ ] "Ready to Rent?" text is displayed prominently.
+- [ ] "Rent Your Setup!" button is visually distinct (filled, colored).
+- [ ] Clicking the button opens the `CheckoutModal`.
+- [ ] The bar shows a summary of total items and total cost.
+
+---
+
+### 7.8 Feature: Extra Categories (Below Builder)
+- **Location:** `categories/ExtraCategories.tsx`
+- Four horizontal sections displayed below the "Ready to Rent?" bar:
+  1. **Coffee Station** — Coffee Machine, Coffee Grinder
+  2. **Outdoor Gear** — Surfboard, Scooter Rental
+  3. **Relax Zone** — Bean Bag Chair, Floor Cushion
+  4. **Garage Space** — Tool Shelf, Storage Box
+- Each section has a heading (e.g., "Coffee Station") and a horizontal row of item cards.
+- Each card has an image and a label: "+ Add [Item Name]".
+- Items can be toggled ON/OFF (multi-select across all sections).
+- Selected items appear with a visual indicator (checkmark or highlight).
+- Selected items are included in the checkout summary.
+
+**Acceptance Criteria:**
+- [ ] All 4 sections are displayed in a horizontal scroll or grid row.
+- [ ] Each section has a bold heading and 2 item cards.
+- [ ] Cards show the item image and "+ Add [Name]" label.
+- [ ] Clicking a card toggles the item ON/OFF.
+- [ ] Selected items have a visual indicator (highlight, checkmark, or border).
+- [ ] Selected items are included in the total price calculation.
+- [ ] Selected items appear in the checkout modal summary.
+
+---
+
+### 7.9 Feature: Checkout Modal
+- **Location:** `CheckoutModal.tsx`
+- Full-screen overlay modal with a close button (X) in the top-right corner.
+- Content layout:
+  - **Header:** "Ringkasan Sewa Anda" (Your Rental Summary)
+  - **Itemized list:** Each selected item grouped by type:
+    - Desk section
+    - Chair section
+    - Workspace Accessories section
+    - Extra Items section (grouped by section name)
+  - Each item row shows: item name, item type/section, and price/month.
+  - **Divider line**
+  - **Total row:** Bold, larger text showing total monthly cost in IDR.
+  - **Call-to-Action button:** "Sewa Sekarang" (Rent Now) — full-width, colored (e.g., teal or coral).
+- Clicking "Sewa Sekarang" shows a success confirmation:
+  - A toast or mini-modal: "Terima kasih! Tim kami akan menghubungi Anda segera."
+  - The checkout modal closes after a brief delay.
+
+**Acceptance Criteria:**
+- [ ] Modal opens when "Rent Your Setup!" is clicked.
+- [ ] All selected items (desk, chair, accessories, extras) are listed.
+- [ ] Items are grouped by category with section headers.
+- [ ] Prices are formatted in IDR with thousand separators (e.g., "Rp 450.000").
+- [ ] Total is calculated correctly and displayed prominently.
+- [ ] Modal can be closed via X button or clicking the overlay background.
+- [ ] "Sewa Sekarang" shows a success message, then closes the modal.
+- [ ] If no items are selected, the modal shows an empty state message.
+
+---
+
+## 8. User Flow
 
 ```
 1. LANDING (page.tsx)
-   └── User sees the builder split-screen:
-       LEFT  → ControlPanel with tabs (Kursi, Meja, Aksesoris)
-       RIGHT → VisualCanvas (empty/placeholder state)
+   └── User sees:
+       • Header: "Design Your Workspace!"
+       • Split-screen: Left (control panel) + Right (canvas)
+       • "Ready to Rent?" bar
+       • Extra categories below
 
-2. SELECT DESK (DeskTab)
-   └── User clicks a desk card
-       → Desk appears on canvas
-       → SummaryBar updates with desk price
-
-3. SELECT CHAIR (ChairTab)
+2. SELECT CHAIR (Chairs tab — default)
    └── User clicks a chair card
-       → Chair appears on canvas (in front of desk)
-       → SummaryBar updates with chair price
+       → Chair appears on canvas (in front of desk position)
+       → Summary updates with chair price
 
-4. ADD ACCESSORIES (AccessoryTab)
+3. SELECT DESK (Desks tab)
+   └── User clicks a desk card
+       → Desk appears on canvas (base layer)
+       → Summary updates with desk price
+
+4. ADD WORKSPACE ACCESSORIES (Accessories tab)
    └── User toggles accessories ON/OFF
        → Accessories appear/disappear on canvas
-       → SummaryBar updates in real-time
+       → Summary updates in real-time
 
-5. CHECKOUT (SummaryBar → CheckoutModal)
-   └── User clicks "Checkout"
-       → Modal opens with itemized summary + total
+5. ADD EXTRA ITEMS (Extra categories below)
+   └── User clicks "+ Add Coffee Machine", "+ Add Surfboard", etc.
+       → Items are added to the selection
+       → Summary updates with extra item prices
+
+6. CHECKOUT (Ready to Rent? → Rent Your Setup!)
+   └── User clicks "Rent Your Setup!"
+       → CheckoutModal opens with full itemized summary
        → User clicks "Sewa Sekarang"
-       → Success message shown
+       → Success message: "Terima kasih!"
        → Modal closes
 ```
 
 ---
 
-## 8. Styling & Design Guidelines
+## 9. Styling & Design Guidelines
 
-### 8.1 Color Palette
-- **Primary:** Teal/Cyan tones (aligns with tropical Bali branding)
-- **Secondary:** Warm wood tones (browns, beige)
-- **Background:** Off-white / light gray (`bg-gray-50`)
-- **Text:** Dark gray (`text-gray-900`) for readability
-- **Accent:** Coral or orange for CTA buttons
+### 9.1 Color Palette
 
-### 8.2 Typography
-- Font: Inter (via `next/font/google`)
-- Headings: `font-bold`, sizes `text-2xl` to `text-4xl`
+| Color              | Hex       | Usage                                        |
+|--------------------|-----------|----------------------------------------------|
+| Primary            | `#0D9488` | CTA buttons, active tab, selected card ring  |
+| Accent             | `#F97316` | "Sewa Sekarang" button, highlight accents    |
+| Background         | `#F8FAFC` | Page background (slate-50)                   |
+| Card Surface       | `#FFFFFF` | Card backgrounds, modal background           |
+| Primary Text       | `#1E293B` | Headings, body text (slate-900)              |
+| Secondary Text     | `#64748B` | Descriptions, labels (slate-500)             |
+| Success            | `#16A34A` | Success confirmation states (green-600)      |
+| Border             | `#E2E8F0` | Card borders, dividers (slate-200)           |
+
+### 9.2 Typography
+- Font: **Inter** (via `next/font/google`)
+- Headings: `font-bold`, `text-3xl` to `text-4xl`
+- Subheadings: `font-semibold`, `text-lg` to `text-xl`
 - Body: `text-base` / `text-sm`
-- Prices: `font-semibold`, formatted as `Rp X.XXX.XXX`
+- Prices: `font-semibold`, formatted as `Rp X.XXX.XXX/bulan`
 
-### 8.3 Layout
-- **Desktop (primary):** Split layout — left panel 40% / right panel 60%.
-- **Mobile:** Stacked layout — controls on top, canvas below (scrollable).
-- **Summary bar:** Sticky bottom, full width, `z-index: 50`.
+### 9.3 Layout
 
-### 8.4 Interactions
-- Card hover: subtle shadow lift (`hover:shadow-lg transition-shadow`).
-- Card selected: border highlight (`ring-2 ring-teal-500`).
-- Tab switching: underline animation or background highlight.
-- Canvas transitions: Framer Motion `AnimatePresence` with fade + slight y-translate.
+| Breakpoint | Left Panel | Right Panel | Extra Categories |
+|------------|------------|-------------|------------------|
+| Desktop    | 40% width  | 60% width   | 4-column grid    |
+| Mobile     | Full width (stacked above canvas) | Full width (stacked below controls) | 2-column grid    |
+
+### 9.4 Interactions & Animations
+
+| Element              | Interaction                                          | Animation                          |
+|----------------------|------------------------------------------------------|------------------------------------|
+| Option Card          | Hover                                                | Shadow lift (`hover:shadow-lg`)    |
+| Option Card          | Selected                                             | Ring border (`ring-2 ring-teal-500`) + checkmark icon |
+| Tab                  | Click to switch                                      | Underline slide or bg highlight    |
+| Canvas item          | Added                                                | Fade-in + slide up (`y: 10 → 0`)  |
+| Canvas item          | Removed                                              | Fade-out + slide up (`y: 0 → -10`)|
+| Checkout Modal       | Open                                                 | Fade-in overlay + scale-up modal   |
+| Checkout Modal       | Close                                                | Fade-out overlay + scale-down modal|
+| Extra item           | Toggle ON                                            | Checkmark appears, border highlight|
+| Extra item           | Toggle OFF                                           | Checkmark disappears, border normal|
 
 ---
 
-## 9. Non-Functional Requirements
+## 10. Non-Functional Requirements
 
 | Requirement     | Detail                                                              |
 |-----------------|---------------------------------------------------------------------|
-| Performance     | Use Next.js `<Image>` for all product images with `width`/`height` for layout stability. Lazy-load below-fold content. |
-| Responsiveness  | Desktop-first, but must be functional on mobile (stacked layout).   |
-| Accessibility   | Use semantic HTML, proper `aria-labels` on interactive elements, keyboard-navigable tabs. |
-| Code Quality    | TypeScript strict mode. Component-driven architecture. No inline styles. |
-| SEO             | Proper `<title>` and `<meta description>` in `layout.tsx`.         |
+| Performance     | Use Next.js `<Image>` for all product images with explicit `width`/`height`. Lazy-load below-fold content. Target: LCP < 2.5s. |
+| Responsiveness  | Desktop-first. Must be fully functional on mobile with stacked layout. |
+| Accessibility   | Semantic HTML, `aria-labels` on all interactive elements, keyboard-navigable tabs (arrow keys), focus-visible outlines. |
+| Code Quality    | TypeScript strict mode. Component-driven. No inline styles. No `any` types. |
+| SEO             | `<title>`: "monis.rent — Workspace Builder" / `<meta description>` in `layout.tsx`. |
+| Error Handling  | Graceful fallback for missing images. Empty state for no selections. |
 
 ---
 
-## 10. Acceptance Criteria Summary
+## 11. Acceptance Criteria Summary
 
 The project is considered **complete** when:
 
-1. The builder page loads with a split-screen layout (controls + canvas).
-2. Users can select exactly one desk and one chair from provided options.
-3. Users can toggle multiple accessories on/off (with mutual exclusion for monitors).
-4. The visual preview canvas updates in real-time with animated transitions.
-5. A sticky summary bar shows the correct total monthly cost in IDR.
-6. The checkout modal displays an accurate itemized breakdown.
-7. The "Sewa Sekarang" button triggers a success confirmation.
-8. The app is responsive (usable on mobile with stacked layout).
-9. All components are TypeScript with proper types.
-10. The app builds and deploys to Vercel without errors.
+1. The page loads with the header "Design Your Workspace!" and subtitle.
+2. The split-screen layout renders: left panel (40%) with tabbed controls, right panel (60%) with the visual canvas.
+3. Three tabs (Chairs, Desks, Accessories) switch panel content correctly.
+4. Users can select exactly one desk and one chair (radio behavior).
+5. Users can toggle multiple accessories on/off (with mutual exclusion for monitor types).
+6. The visual preview canvas updates in real-time with animated transitions.
+7. The "Ready to Rent?" bar is displayed with the "Rent Your Setup!" CTA.
+8. Four extra category sections (Coffee Station, Outdoor Gear, Relax Zone, Garage Space) are displayed with toggleable items.
+9. The checkout modal shows an accurate itemized summary with correct total.
+10. "Sewa Sekarang" triggers a success confirmation message.
+11. The app is responsive (stacked layout on mobile).
+12. All components are TypeScript with proper types, no `any`.
+13. The app builds and deploys to Vercel without errors.
 
 ---
 
-## 11. Future Improvements (Out of Scope for MVP)
+## 12. Future Improvements (Out of Scope for MVP)
 
 - **Drag-and-Drop Canvas:** Free repositioning of items on the desk.
 - **Saved Configurations:** Unique shareable URLs for workspace designs.
 - **Backend Integration:** Database, user auth, and payment gateway (Midtrans/Stripe).
 - **AR Preview:** Augmented Reality mode for room preview via mobile camera.
-- **Multiple Language Support:** English/Indonesian toggle.
+- **Multi-language:** English/Indonesian toggle.
+- **Rental Duration Selector:** Weekly, monthly, or custom rental periods.
+- **Availability Check:** Real-time stock availability for each item.

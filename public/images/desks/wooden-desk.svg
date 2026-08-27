@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="400" viewBox="0 0 800 400">
+  <defs>
+    <linearGradient id="wood" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#d4a054"/>
+      <stop offset="100%" stop-color="#b8860b"/>
+    </linearGradient>
+  </defs>
+  <!-- desk top (perspective) -->
+  <polygon points="140,170 660,170 700,140 100,140" fill="url(#wood)" stroke="#a16207" stroke-width="2"/>
+  <!-- front edge -->
+  <rect x="140" y="170" width="520" height="14" rx="2" fill="#a16207"/>
+  <!-- drawer -->
+  <rect x="500" y="145" width="130" height="25" rx="4" fill="#92400e" opacity="0.7"/>
+  <rect x="555" y="152" width="20" height="8" rx="2" fill="#d4a054" opacity="0.6"/>
+  <!-- left leg -->
+  <polygon points="180,184 172,290 180,290 190,184" fill="#92400e"/>
+  <!-- right leg -->
+  <polygon points="610,184 620,290 628,290 620,184" fill="#92400e"/>
+  <!-- shadow -->
+  <ellipse cx="400" cy="310" rx="260" ry="12" fill="#92400e" opacity="0.12"/>
+</svg>

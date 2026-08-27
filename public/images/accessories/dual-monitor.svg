@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200">
+  <!-- left monitor -->
+  <polygon points="10,50 85,50 90,42 5,42" fill="#334155"/>
+  <rect x="10" y="50" width="75" height="65" rx="3" fill="#1e293b"/>
+  <rect x="14" y="54" width="67" height="57" rx="2" fill="#0f172a"/>
+  <!-- right monitor -->
+  <polygon points="115,50 190,50 195,42 110,42" fill="#334155"/>
+  <rect x="115" y="50" width="75" height="65" rx="3" fill="#1e293b"/>
+  <rect x="119" y="54" width="67" height="57" rx="2" fill="#0f172a"/>
+  <!-- shared stand -->
+  <polygon points="85,115 115,115 120,140 80,140" fill="#475569"/>
+  <rect x="70" y="140" width="60" height="6" rx="2" fill="#64748b"/>
+</svg>

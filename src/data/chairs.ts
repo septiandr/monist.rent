@@ -7,7 +7,7 @@ export const chairs: Chair[] = [
     description: "Kursi ergonomis dengan jaring breathable untuk kenyamanan sepanjang hari",
     ergonomicHighlights: ["Breathable mesh back", "Lumbar support", "Adjustable height"],
     pricePerMonth: 300000,
-    image: "/images/chairs/mesh-chair.jpg",
+    image: "/images/chairs/mesh-chair.svg",
   },
   {
     id: "chair-executive",
@@ -15,6 +15,6 @@ export const chairs: Chair[] = [
     description: "Kursi eksekutif kulit premium untuk tampilan profesional",
     ergonomicHighlights: ["Premium leather", "Full lumbar + headrest", "Tilt mechanism"],
     pricePerMonth: 500000,
-    image: "/images/chairs/executive-chair.jpg",
+    image: "/images/chairs/executive-chair.svg",
   },
 ];

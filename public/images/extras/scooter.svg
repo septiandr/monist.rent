@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 120 120">
+  <!-- body (front-top perspective) -->
+  <polygon points="25,50 95,50 92,75 28,75" fill="#334155"/>
+  <polygon points="25,50 95,50 98,45 22,45" fill="#475569"/>
+  <!-- handlebars -->
+  <rect x="18" y="40" width="12" height="12" rx="3" fill="#64748b"/>
+  <rect x="90" y="40" width="12" height="12" rx="3" fill="#64748b"/>
+  <!-- headlight -->
+  <circle cx="60" cy="48" r="5" fill="#fbbf24" opacity="0.8"/>
+  <!-- seat -->
+  <ellipse cx="55" cy="52" rx="18" ry="6" fill="#1e293b"/>
+  <!-- front wheel -->
+  <circle cx="85" cy="82" r="12" fill="#1e293b"/>
+  <circle cx="85" cy="82" r="5" fill="#64748b"/>
+  <!-- rear wheel -->
+  <circle cx="35" cy="82" r="12" fill="#1e293b"/>
+  <circle cx="35" cy="82" r="5" fill="#64748b"/>
+</svg>

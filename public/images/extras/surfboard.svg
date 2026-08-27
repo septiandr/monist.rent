@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 120 120">
+  <!-- board (front-top perspective, slightly tilted) -->
+  <polygon points="20,90 100,90 95,25 25,25" fill="#0ea5e9" opacity="0.8"/>
+  <polygon points="25,25 95,25 100,22 20,22" fill="#38bdf8" opacity="0.7"/>
+  <!-- stringer -->
+  <line x1="60" y1="25" x2="60" y2="88" stroke="#0284c7" stroke-width="2"/>
+  <!-- fin -->
+  <ellipse cx="60" cy="82" rx="12" ry="5" fill="#0284c7"/>
+  <!-- nose highlight -->
+  <ellipse cx="60" cy="30" rx="8" ry="4" fill="#7dd3fc" opacity="0.4"/>
+</svg>
