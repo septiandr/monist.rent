@@ -1,14 +1,71 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="800" height="400" viewBox="0 0 800 400">
-  <!-- desk top surface -->
-  <polygon points="120,110 680,110 720,150 80,150" fill="#d4a054" stroke="#a16207" stroke-width="2"/>
-  <!-- desk front face -->
-  <polygon points="80,150 720,150 720,165 80,165" fill="#b8860b"/>
-  <!-- drawer -->
-  <rect x="530" y="120" width="120" height="28" rx="4" fill="#92400e" opacity="0.65"/>
-  <rect x="580" y="128" width="18" height="8" rx="2" fill="#d4a054" opacity="0.55"/>
-  <!-- legs -->
-  <rect x="130" y="165" width="10" height="95" rx="2" fill="#a16207"/>
-  <rect x="660" y="165" width="10" height="95" rx="2" fill="#a16207"/>
-  <!-- shadow -->
-  <ellipse cx="400" cy="275" rx="290" ry="14" fill="#92400e" opacity="0.08"/>
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="420" viewBox="0 0 800 420" fill="none">
+  <defs>
+    <linearGradient id="wd-top" x1="110" y1="105" x2="690" y2="152" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#b45309"/>
+      <stop offset="35%" stop-color="#d97706"/>
+      <stop offset="70%" stop-color="#f59e0b"/>
+      <stop offset="100%" stop-color="#b45309"/>
+    </linearGradient>
+    <linearGradient id="wd-edge" x1="70" y1="146" x2="730" y2="164" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#78350f"/>
+      <stop offset="50%" stop-color="#92400e"/>
+      <stop offset="100%" stop-color="#78350f"/>
+    </linearGradient>
+    <linearGradient id="wd-leg" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#78350f"/>
+      <stop offset="60%" stop-color="#b45309"/>
+      <stop offset="100%" stop-color="#78350f"/>
+    </linearGradient>
+    <linearGradient id="wd-brass" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#d97706"/>
+      <stop offset="50%" stop-color="#fde047"/>
+      <stop offset="100%" stop-color="#b45309"/>
+    </linearGradient>
+    <filter id="wd-shadow" x="50" y="240" width="700" height="60" filterUnits="userSpaceOnUse">
+      <feGaussianBlur stdDeviation="12" result="blur"/>
+    </filter>
+  </defs>
+
+  <!-- Ambient Floor Shadow -->
+  <ellipse cx="400" cy="272" rx="320" ry="16" fill="#451a03" opacity="0.2" filter="url(#wd-shadow)"/>
+  <ellipse cx="400" cy="270" rx="260" ry="9" fill="#451a03" opacity="0.25"/>
+
+  <!-- Left Tapered Legs (Solid Teak with Brass Feet) -->
+  <!-- Rear Left Leg -->
+  <polygon points="152,160 162,160 156,260 148,260" fill="#451a03" opacity="0.6"/>
+  <!-- Front Left Leg -->
+  <polygon points="120,164 134,164 118,270 108,270" fill="url(#wd-leg)"/>
+  <!-- Front Left Brass Ferrule Cap -->
+  <polygon points="119,262 127,262 118,270 110,270" fill="url(#wd-brass)"/>
+
+  <!-- Right Tapered Legs -->
+  <!-- Rear Right Leg -->
+  <polygon points="638,160 648,160 642,260 634,260" fill="#451a03" opacity="0.6"/>
+  <!-- Front Right Leg -->
+  <polygon points="666,164 680,164 692,270 682,270" fill="url(#wd-leg)"/>
+  <!-- Front Right Brass Ferrule Cap -->
+  <polygon points="673,262 681,262 690,270 682,270" fill="url(#wd-brass)"/>
+
+  <!-- Desk Apron Support Frame -->
+  <polygon points="110,162 690,162 690,174 110,174" fill="#78350f"/>
+
+  <!-- Artisan Sliding Drawer (Right Hand Side) -->
+  <rect x="470" y="162" width="190" height="26" rx="3" fill="#92400e" stroke="#78350f" stroke-width="1"/>
+  <!-- Drawer Inset Shadow & Line -->
+  <rect x="474" y="164" width="182" height="22" rx="2" fill="#78350f" opacity="0.3"/>
+  <!-- Brushed Brass Pull Handle -->
+  <rect x="548" y="171" width="34" height="6" rx="3" fill="url(#wd-brass)"/>
+  <ellipse cx="565" cy="174" rx="15" ry="1.5" fill="#fef08a" opacity="0.8"/>
+
+  <!-- Teak Desk Top Surface (Isometric Angle) -->
+  <polygon points="110,105 690,105 738,148 62,148" fill="url(#wd-top)" stroke="#92400e" stroke-width="1.5"/>
+
+  <!-- Teak Wood Grain Accents -->
+  <path d="M160 116 Q350 128 620 118" stroke="#78350f" stroke-width="0.8" opacity="0.35" fill="none"/>
+  <path d="M120 132 Q420 144 680 134" stroke="#78350f" stroke-width="0.8" opacity="0.3" fill="none"/>
+  <path d="M210 124 Q480 135 590 126" stroke="#fbbf24" stroke-width="0.5" opacity="0.4" fill="none"/>
+
+  <!-- Chamfered Front Edge Highlight -->
+  <polygon points="62,148 738,148 738,162 62,162" fill="url(#wd-edge)"/>
+  <line x1="62" y1="148" x2="738" y2="148" stroke="#fde68a" stroke-width="1" opacity="0.5"/>
 </svg>

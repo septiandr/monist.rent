@@ -1,15 +1,73 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="800" height="400" viewBox="0 0 800 400">
-  <!-- consistent 30° top-front angle for entire scene -->
-  <!-- desk top surface -->
-  <polygon points="100,100 700,100 740,140 60,140" fill="#e2e8f0" stroke="#94a3b8" stroke-width="2"/>
-  <!-- desk front face -->
-  <polygon points="60,140 740,140 740,155 60,155" fill="#cbd5e1"/>
-  <!-- desk legs -->
-  <rect x="100" y="155" width="10" height="100" rx="2" fill="#94a3b8"/>
-  <rect x="690" y="155" width="10" height="100" rx="2" fill="#94a3b8"/>
-  <!-- control panel on desk surface -->
-  <rect x="340" y="108" width="120" height="18" rx="5" fill="#0d9488" opacity="0.85"/>
-  <text x="400" y="121" font-family="system-ui,sans-serif" font-size="10" font-weight="600" fill="white" text-anchor="middle">▲ UP ▼ DOWN</text>
-  <!-- floor shadow -->
-  <ellipse cx="400" cy="270" rx="300" ry="15" fill="#94a3b8" opacity="0.1"/>
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="420" viewBox="0 0 800 420" fill="none">
+  <defs>
+    <linearGradient id="sd-top" x1="100" y1="100" x2="700" y2="150" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#1e293b"/>
+      <stop offset="50%" stop-color="#334155"/>
+      <stop offset="100%" stop-color="#1e293b"/>
+    </linearGradient>
+    <linearGradient id="sd-edge" x1="60" y1="140" x2="740" y2="156" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#0f172a"/>
+      <stop offset="50%" stop-color="#1e293b"/>
+      <stop offset="100%" stop-color="#0f172a"/>
+    </linearGradient>
+    <linearGradient id="sd-leg" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#475569"/>
+      <stop offset="40%" stop-color="#94a3b8"/>
+      <stop offset="100%" stop-color="#334155"/>
+    </linearGradient>
+    <linearGradient id="sd-foot" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#1e293b"/>
+      <stop offset="50%" stop-color="#475569"/>
+      <stop offset="100%" stop-color="#0f172a"/>
+    </linearGradient>
+    <filter id="sd-shadow" x="50" y="240" width="700" height="60" filterUnits="userSpaceOnUse">
+      <feGaussianBlur stdDeviation="12" result="blur"/>
+    </filter>
+  </defs>
+
+  <!-- Ambient Floor Shadow -->
+  <ellipse cx="400" cy="270" rx="330" ry="18" fill="#0f172a" opacity="0.18" filter="url(#sd-shadow)"/>
+  <ellipse cx="400" cy="268" rx="270" ry="10" fill="#0f172a" opacity="0.25"/>
+
+  <!-- Left Leg Assembly (Dual-Stage Telescoping Motorized Column) -->
+  <rect x="132" y="156" width="22" height="62" rx="3" fill="url(#sd-leg)"/>
+  <rect x="135" y="214" width="16" height="52" rx="2" fill="url(#sd-leg)"/>
+  <!-- Left Foot -->
+  <path d="M100 266 L186 266 L192 274 L94 274 Z" fill="url(#sd-foot)"/>
+  <circle cx="106" cy="274" r="3" fill="#0f172a"/>
+  <circle cx="180" cy="274" r="3" fill="#0f172a"/>
+
+  <!-- Right Leg Assembly -->
+  <rect x="646" y="156" width="22" height="62" rx="3" fill="url(#sd-leg)"/>
+  <rect x="649" y="214" width="16" height="52" rx="2" fill="url(#sd-leg)"/>
+  <!-- Right Foot -->
+  <path d="M614 266 L700 266 L706 274 L608 274 Z" fill="url(#sd-foot)"/>
+  <circle cx="620" cy="274" r="3" fill="#0f172a"/>
+  <circle cx="694" cy="274" r="3" fill="#0f172a"/>
+
+  <!-- Under-Desk Cable Management Spine & Steel Crossbar -->
+  <rect x="154" y="162" width="492" height="12" rx="2" fill="#1e293b"/>
+  <rect x="260" y="174" width="280" height="16" rx="4" fill="#0f172a" opacity="0.6"/>
+
+  <!-- Desk Top Surface (Isometric Matte Slate / Carbon Finish) -->
+  <polygon points="100,100 700,100 746,144 54,144" fill="url(#sd-top)" stroke="#64748b" stroke-width="1.5"/>
+
+  <!-- Rear Cable Grommet -->
+  <ellipse cx="400" cy="107" rx="14" ry="4" fill="#0f172a" stroke="#475569" stroke-width="1"/>
+  <circle cx="400" cy="107" r="3" fill="#020617"/>
+
+  <!-- Bevelled Front Edge Highlight -->
+  <polygon points="54,144 746,144 746,156 54,156" fill="url(#sd-edge)"/>
+  <line x1="54" y1="144" x2="746" y2="144" stroke="#94a3b8" stroke-width="1" opacity="0.4"/>
+
+  <!-- Digital Motor Memory Controller (Standing Desk Keypad) -->
+  <rect x="634" y="146" width="80" height="20" rx="4" fill="#020617" stroke="#334155" stroke-width="1"/>
+  <!-- LED Height Readout -->
+  <rect x="639" y="149" width="34" height="14" rx="2" fill="#090d16"/>
+  <text x="656" y="160" font-family="monospace, monospace" font-size="9" font-weight="700" fill="#2dd4bf" text-anchor="middle">75.0</text>
+  <!-- Touch Up / Down Buttons -->
+  <circle cx="682" cy="156" r="4" fill="#1e293b" stroke="#0d9488" stroke-width="0.8"/>
+  <text x="682" y="158" font-family="system-ui" font-size="7" font-weight="900" fill="#5eead4" text-anchor="middle">▲</text>
+  <circle cx="698" cy="156" r="4" fill="#1e293b" stroke="#0d9488" stroke-width="0.8"/>
+  <text x="698" y="159" font-family="system-ui" font-size="7" font-weight="900" fill="#5eead4" text-anchor="middle">▼</text>
 </svg>

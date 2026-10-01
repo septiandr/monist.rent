@@ -1,8 +1,60 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 120 120">
-  <!-- same 30° top-front angle -->
-  <polygon points="22,42 98,42 102,35 18,35" fill="#92400e"/>
-  <polygon points="22,42 98,42 96,88 24,88" fill="#78350f"/>
-  <rect x="72" y="22" width="18" height="16" rx="3" fill="#475569" opacity="0.55"/>
-  <ellipse cx="60" cy="82" rx="20" ry="5" fill="#64748b"/>
-  <ellipse cx="60" cy="76" rx="10" ry="4" fill="#fbbf24" opacity="0.65"/>
+<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200" fill="none">
+  <defs>
+    <linearGradient id="cm-steel" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#475569"/>
+      <stop offset="35%" stop-color="#f8fafc"/>
+      <stop offset="70%" stop-color="#cbd5e1"/>
+      <stop offset="100%" stop-color="#334155"/>
+    </linearGradient>
+    <linearGradient id="cm-brass" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#d97706"/>
+      <stop offset="50%" stop-color="#fde047"/>
+      <stop offset="100%" stop-color="#92400e"/>
+    </linearGradient>
+    <filter id="cm-shadow" x="20" y="160" width="160" height="30" filterUnits="userSpaceOnUse">
+      <feGaussianBlur stdDeviation="4" result="blur"/>
+    </filter>
+  </defs>
+
+  <ellipse cx="100" cy="172" rx="60" ry="8" fill="#0f172a" opacity="0.3" filter="url(#cm-shadow)"/>
+
+  <!-- Machine Body Chassis (Stainless Steel) -->
+  <rect x="52" y="52" width="96" height="110" rx="8" fill="url(#cm-steel)" stroke="#64748b" stroke-width="1.5"/>
+
+  <!-- Top Cup Warmer Rail -->
+  <rect x="58" y="44" width="84" height="8" rx="2" fill="#334155"/>
+  <rect x="64" y="38" width="16" height="8" rx="2" fill="#f8fafc" opacity="0.8"/>
+  <rect x="84" y="38" width="16" height="8" rx="2" fill="#f8fafc" opacity="0.8"/>
+
+  <!-- Round Brass Barometer Pressure Gauge -->
+  <circle cx="100" cy="74" r="14" fill="#0f172a" stroke="url(#cm-brass)" stroke-width="2"/>
+  <circle cx="100" cy="74" r="11" fill="#fef08a"/>
+  <!-- Gauge Needle at 9 Bar Extraction -->
+  <line x1="100" y1="74" x2="106" y2="67" stroke="#dc2626" stroke-width="1.5" stroke-linecap="round"/>
+  <circle cx="100" cy="74" r="2" fill="#0f172a"/>
+
+  <!-- Power & Brew Toggle Switches -->
+  <circle cx="70" cy="74" r="4" fill="#10b981" stroke="#047857" stroke-width="1"/>
+  <circle cx="130" cy="74" r="4" fill="#f97316" stroke="#c2410c" stroke-width="1"/>
+
+  <!-- Commercial E61 Grouphead & Portafilter -->
+  <rect x="88" y="98" width="24" height="12" rx="2" fill="url(#cm-steel)"/>
+  <!-- Portafilter Spout & Handle -->
+  <circle cx="100" cy="112" r="8" fill="#0f172a" stroke="#64748b" stroke-width="1"/>
+  <line x1="106" y1="114" x2="148" y2="124" stroke="#78350f" stroke-width="6" stroke-linecap="round"/>
+  <circle cx="148" cy="124" r="4" fill="url(#cm-brass)"/>
+
+  <!-- Steam Wand -->
+  <path d="M64 102 L56 128 L62 136" stroke="url(#cm-steel)" stroke-width="3" stroke-linecap="round" fill="none"/>
+  <circle cx="62" cy="136" r="2.5" fill="#fde047"/>
+
+  <!-- Drip Tray with Perforated Stainless Grate -->
+  <rect x="46" y="146" width="108" height="16" rx="4" fill="#1e293b" stroke="#64748b" stroke-width="1"/>
+  <line x1="56" y1="150" x2="144" y2="150" stroke="#475569" stroke-width="1.5" stroke-dasharray="3,2"/>
+  <line x1="56" y1="154" x2="144" y2="154" stroke="#475569" stroke-width="1.5" stroke-dasharray="3,2"/>
+
+  <!-- Ceramic Espresso Cup with Crema -->
+  <rect x="92" y="128" width="16" height="16" rx="3" fill="#f8fafc"/>
+  <path d="M108 132 Q113 136 108 140" stroke="#f8fafc" stroke-width="2" fill="none"/>
+  <ellipse cx="100" cy="130" rx="6" ry="2" fill="#b45309"/>
 </svg>

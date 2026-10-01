@@ -1,7 +1,37 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 120 120">
-  <polygon points="15,46 105,46 110,38 10,38" fill="#a8a29e"/>
-  <polygon points="15,46 105,46 103,85 17,85" fill="#78716c"/>
-  <polygon points="12,38 108,38 112,30 8,30" fill="#d6d3d1" opacity="0.45"/>
-  <rect x="46" y="40" width="28" height="5" rx="2" fill="#57534e"/>
-  <rect x="52" y="44" width="16" height="6" rx="1" fill="#44403c"/>
+<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200" fill="none">
+  <defs>
+    <linearGradient id="sb-crate" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#334155"/>
+      <stop offset="50%" stop-color="#1e293b"/>
+      <stop offset="100%" stop-color="#0f172a"/>
+    </linearGradient>
+    <filter id="sb-shadow" x="20" y="145" width="160" height="30" filterUnits="userSpaceOnUse">
+      <feGaussianBlur stdDeviation="5" result="blur"/>
+    </filter>
+  </defs>
+
+  <ellipse cx="100" cy="162" rx="64" ry="10" fill="#0f172a" opacity="0.3" filter="url(#sb-shadow)"/>
+
+  <!-- Lower Crate Basin (Heavy-Duty Polymer) -->
+  <polygon points="46,104 154,104 146,160 54,160" fill="url(#sb-crate)" stroke="#475569" stroke-width="1.5"/>
+
+  <!-- Reinforcing Structural Ribs -->
+  <line x1="72" y1="106" x2="74" y2="158" stroke="#475569" stroke-width="2"/>
+  <line x1="100" y1="106" x2="100" y2="158" stroke="#475569" stroke-width="2"/>
+  <line x1="128" y1="106" x2="126" y2="158" stroke="#475569" stroke-width="2"/>
+
+  <!-- Side Molded Carry Handles -->
+  <rect x="90" y="118" width="20" height="8" rx="4" fill="#020617"/>
+
+  <!-- Protective Snap-Lock Lid -->
+  <polygon points="40,88 160,88 164,104 36,104" fill="#475569" stroke="#64748b" stroke-width="1.5"/>
+  <polygon points="46,74 154,74 160,88 40,88" fill="#334155" stroke="#475569" stroke-width="1.2"/>
+
+  <!-- Industrial High-Visibility Latches (Teal) -->
+  <rect x="58" y="96" width="12" height="16" rx="2" fill="#0d9488" stroke="#115e59" stroke-width="1"/>
+  <rect x="130" y="96" width="12" height="16" rx="2" fill="#0d9488" stroke="#115e59" stroke-width="1"/>
+
+  <!-- Bali Nomad Spec Decal -->
+  <rect x="85" y="136" width="30" height="12" rx="1.5" fill="#f8fafc" opacity="0.9"/>
+  <text x="100" y="145" font-family="system-ui" font-size="5" font-weight="800" fill="#0f172a" text-anchor="middle">NOMAD 45L</text>
 </svg>

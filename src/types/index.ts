@@ -55,6 +55,9 @@ export interface WorkspaceState {
   selectedExtras: ExtraItem[];
   isCheckoutOpen: boolean;
   activeTab: "chairs" | "desks" | "accessories";
+  isStandingMode: boolean;
+  isLampActive: boolean;
+  isNightMode: boolean;
 
   selectDesk: (desk: Desk) => void;
   selectChair: (chair: Chair) => void;
@@ -63,6 +66,11 @@ export interface WorkspaceState {
   openCheckout: () => void;
   closeCheckout: () => void;
   setActiveTab: (tab: "chairs" | "desks" | "accessories") => void;
+  setStandingMode: (isStanding: boolean) => void;
+  setLampActive: (isActive: boolean) => void;
+  setNightMode: (isNight: boolean) => void;
+  applyPreset: (presetId: "starter" | "powerhouse" | "executive") => void;
+  clearWorkspace: () => void;
   getTotalPrice: () => number;
   getSelectedItemSummary: () => ItemSummary[];
 }

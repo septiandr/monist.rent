@@ -1,7 +1,34 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 120 120">
-  <polygon points="16,82 104,82 108,18 12,18" fill="#0ea5e9" opacity="0.75"/>
-  <polygon points="12,18 108,18 112,14 8,14" fill="#38bdf8" opacity="0.65"/>
-  <line x1="60" y1="18" x2="60" y2="80" stroke="#0284c7" stroke-width="2"/>
-  <ellipse cx="60" cy="78" rx="14" ry="6" fill="#0284c7"/>
-  <ellipse cx="60" cy="22" rx="10" ry="5" fill="#7dd3fc" opacity="0.3"/>
+<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200" fill="none">
+  <defs>
+    <linearGradient id="sb-resin" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#38bdf8"/>
+      <stop offset="45%" stop-color="#2dd4bf"/>
+      <stop offset="75%" stop-color="#fdba74"/>
+      <stop offset="100%" stop-color="#f43f5e"/>
+    </linearGradient>
+    <filter id="sb-shadow" x="30" y="30" width="140" height="150" filterUnits="userSpaceOnUse">
+      <feGaussianBlur stdDeviation="6" result="blur"/>
+    </filter>
+  </defs>
+
+  <!-- Ambient Wall/Floor Drop Shadow -->
+  <path d="M78 28 C98 15, 126 15, 138 28 C160 75, 155 145, 128 182 C115 178, 92 178, 80 182 C55 145, 52 75, 78 28 Z" fill="#0f172a" opacity="0.25" filter="url(#sb-shadow)"/>
+
+  <!-- Bali Canggu Custom Surfboard (Twin-Fin Fish Outline) -->
+  <path d="M72 24 C92 12, 120 12, 132 24 C154 70, 148 140, 124 176 L102 165 L80 176 C56 140, 50 70, 72 24 Z" fill="url(#sb-resin)" stroke="#0284c7" stroke-width="1.5"/>
+
+  <!-- Wooden Cedar Stringer (Center Spine) -->
+  <line x1="102" y1="16" x2="102" y2="165" stroke="#78350f" stroke-width="2.5" stroke-linecap="round"/>
+  <line x1="102" y1="16" x2="102" y2="165" stroke="#fde047" stroke-width="0.8" opacity="0.8"/>
+
+  <!-- Swallow Tail Notch & Twin Fins (peeking underneath) -->
+  <polygon points="76,160 68,172 82,168" fill="#0f172a" opacity="0.6"/>
+  <polygon points="128,160 136,172 122,168" fill="#0f172a" opacity="0.6"/>
+
+  <!-- Monis Rent Custom Shaper Decal -->
+  <circle cx="102" cy="75" r="14" fill="#ffffff" opacity="0.85"/>
+  <text x="102" y="78" font-family="system-ui" font-size="6" font-weight="900" fill="#0d9488" text-anchor="middle">BALI</text>
+
+  <!-- High-Gloss Wet Sanding Polish Reflection -->
+  <path d="M76 28 C92 20, 114 20, 126 28 L116 140 C106 142, 94 142, 84 140 Z" fill="#ffffff" opacity="0.18"/>
 </svg>

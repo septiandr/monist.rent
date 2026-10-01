@@ -1,29 +1,58 @@
-# monis.rent Workspace Builder
+# monis.rent Interactive Workspace Builder 🌴
 
-Interactive web application for customizing workspace setups for digital nomads in Bali.
+> An interactive, visual web experience for digital nomads and startups in Bali to design and rent their dream workspace.
 
-## Tech Stack
+---
 
-- Next.js 16 (App Router)
-- TypeScript
-- Tailwind CSS
-- Zustand
-- Framer Motion
-- Lucide React
+## ✨ Features & Agency-Grade Highlights
 
-## Getting Started
+- **Live Interactive Visual Canvas**: Real-time studio rendering of desks, chairs, monitors, and accessories stacked on an elegant presentation podium.
+- **Motorized Standing Desk Elevation**: Interactive `Sit 75cm` ↔ `Stand 110cm` toggle with smooth spring physics that raises the desk and all mounted gear in unison.
+- **In-Canvas Interactive Hotspots**: Direct `+ Add Monitor!`, `+ Place a Plant!`, and `+ Add Lamp!` interactive badges as shown in the original sketch wireframe.
+- **Daylight & Night Mode Ambiance**: Switch between Canggu daylight and sunset studio night mode with glowing monitors and warm volumetric lamp lighting.
+- **1-Click Curated Presets**: Instantly style the setup with *Nomad Starter*, *Dev Powerhouse*, and *Bali Villa Executive* presets.
+- **Bali Nomad Lifestyle Gear**: Add-ons for Espresso Machines, Precision Grinders, Surfboards, Electric Nomadic Scooters, and Meditation Poufs.
+- **Itemized Checkout & Direct Confirmation**: Full pricing breakdown, zero-commitment rental summary, and instant WhatsApp booking flow.
+
+---
+
+## 🛠️ Tech Stack & Architecture
+
+- **Framework**: Next.js 16 (App Router)
+- **Language**: TypeScript (Strict Mode)
+- **Styling**: Tailwind CSS
+- **State Management**: Zustand
+- **Animations**: Framer Motion
+- **Icons**: Lucide React
+- **Assets**: Custom high-fidelity vector illustrations
+
+---
+
+## 🚀 Getting Started
 
 ```bash
+# Install dependencies
 npm install
+
+# Run development server
 npm run dev
+
+# Build for production
+npm run build
 ```
 
-Open [http://localhost:3000](http://localhost:3000).
+Open [http://localhost:3000](http://localhost:3000) to view the workspace builder.
 
-## Approach
+---
 
-I built this as a single-page configurator where users can compose a workspace from a desk, chair, accessories, and extras, then see a live preview and a price summary. The core idea is that every selection is a discrete, togglable state, and the canvas is just a projection of that state.
+## 📦 Deployment & Submission
 
-**Tech choices.** Next.js 16 (App Router) for the file-based routing and image optimization, TypeScript in strict mode for compile-time safety on a small but state-heavy UI, and Zustand for a single flat store that holds selections and exposes actions (no prop drilling, no context boilerplate). Tailwind keeps every component's styles co-located in JSX, and Framer Motion + `AnimatePresence` handle the swap/enter/exit transitions when items change. All product data is static TypeScript files in `src/data/`, which makes it trivial to swap in an API later without touching components.
+1. **Deploy to Vercel**:
+   - Push this repository to GitHub.
+   - Import the repository on [Vercel](https://vercel.com).
+   - Set Build Command: `npm run build`
+   - Deploy to obtain the public live URL.
 
-**What I'd improve with more time.** Add per-item positioning on the canvas (drag-to-place accessories), persist selections to `localStorage` so a refresh doesn't wipe the workspace, surface a "complete" preset the user can load in one click, and replace the SVG product art with real photography. I'd also add unit tests around the store's `getTotalPrice` and `getSelectedItemSummary` since they're the only place where the pricing math lives, and a basic a11y pass to verify keyboard tab navigation between the option cards.
+2. **Add Collaborator**:
+   - On GitHub, go to **Settings** > **Collaborators** > **Add people**.
+   - Invite `desent-bot` as a collaborator.

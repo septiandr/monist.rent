@@ -1,8 +1,41 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 120 120">
-  <polygon points="27,38 93,38 97,32 23,32" fill="#92400e"/>
-  <polygon points="27,38 93,38 91,85 29,85" fill="#78350f"/>
-  <ellipse cx="60" cy="28" rx="18" ry="8" fill="#a16207" opacity="0.45"/>
-  <circle cx="60" cy="55" r="12" fill="#475569"/>
-  <circle cx="60" cy="55" r="6" fill="#64748b"/>
-  <ellipse cx="60" cy="80" rx="18" ry="4" fill="#64748b"/>
+<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200" fill="none">
+  <defs>
+    <linearGradient id="cg-body" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#0f172a"/>
+      <stop offset="50%" stop-color="#334155"/>
+      <stop offset="100%" stop-color="#0f172a"/>
+    </linearGradient>
+    <linearGradient id="cg-hopper" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#94a3b8" stop-opacity="0.3"/>
+      <stop offset="50%" stop-color="#f8fafc" stop-opacity="0.5"/>
+      <stop offset="100%" stop-color="#64748b" stop-opacity="0.3"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Ambient Shadow -->
+  <ellipse cx="100" cy="176" rx="45" ry="7" fill="#0f172a" opacity="0.3"/>
+
+  <!-- Clear Bean Hopper with Roasted Coffee Beans -->
+  <polygon points="76,38 124,38 116,78 84,78" fill="url(#cg-hopper)" stroke="#94a3b8" stroke-width="1"/>
+  <ellipse cx="100" cy="38" rx="24" ry="6" fill="#1e293b"/>
+  <!-- Beans inside hopper -->
+  <ellipse cx="94" cy="52" rx="4" ry="3" fill="#78350f" transform="rotate(20 94 52)"/>
+  <ellipse cx="106" cy="56" rx="4.5" ry="3.5" fill="#451a03" transform="rotate(-30 106 56)"/>
+  <ellipse cx="98" cy="66" rx="4" ry="3" fill="#78350f"/>
+  <ellipse cx="104" cy="46" rx="3.5" ry="2.5" fill="#92400e"/>
+
+  <!-- Stepless Grind Adjustment Collar -->
+  <rect x="80" y="78" width="40" height="12" rx="3" fill="#d97706" stroke="#92400e" stroke-width="1"/>
+  <line x1="88" y1="84" x2="112" y2="84" stroke="#fef08a" stroke-width="1.5" stroke-dasharray="2,2"/>
+
+  <!-- Motor Housing Tower (Matte Black Die-Cast) -->
+  <path d="M72 90 L128 90 L132 165 L68 165 Z" fill="url(#cg-body)" stroke="#475569" stroke-width="1.2"/>
+
+  <!-- Metal Dosing Spout -->
+  <polygon points="92,106 108,106 104,124 96,124" fill="#94a3b8"/>
+  <circle cx="100" cy="124" r="2.5" fill="#451a03"/>
+
+  <!-- Stainless Catch Cup / Portafilter Fork -->
+  <rect x="86" y="130" width="28" height="30" rx="3" fill="#cbd5e1" stroke="#64748b" stroke-width="1"/>
+  <rect x="64" y="165" width="72" height="10" rx="3" fill="#0f172a"/>
 </svg>

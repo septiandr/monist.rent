@@ -1,17 +1,72 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200">
-  <!-- same 30° top-front angle -->
-  <!-- base (ellipse from above) -->
-  <ellipse cx="100" cy="128" rx="58" ry="16" fill="#94a3b8"/>
-  <!-- base front face -->
-  <polygon points="42,128 158,128 158,136 42,136" fill="#64748b"/>
-  <!-- support arms -->
-  <polygon points="52,125 70,62 76,64 58,127" fill="#64748b"/>
-  <polygon points="148,125 130,62 124,64 142,127" fill="#64748b"/>
-  <!-- laptop top surface -->
-  <polygon points="45,62 155,62 162,52 38,52" fill="#334155"/>
-  <!-- laptop front face -->
-  <rect x="45" y="62" width="110" height="55" rx="3" fill="#1e293b"/>
-  <rect x="50" y="67" width="100" height="45" rx="2" fill="#0f172a"/>
-  <!-- screen glare -->
-  <rect x="55" y="72" width="40" height="3" rx="1" fill="#334155" opacity="0.4"/>
+<svg xmlns="http://www.w3.org/2000/svg" width="220" height="200" viewBox="0 0 220 200" fill="none">
+  <defs>
+    <linearGradient id="ls-metal" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#475569"/>
+      <stop offset="50%" stop-color="#94a3b8"/>
+      <stop offset="100%" stop-color="#334155"/>
+    </linearGradient>
+    <linearGradient id="ls-mac" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#1e293b"/>
+      <stop offset="100%" stop-color="#0f172a"/>
+    </linearGradient>
+    <linearGradient id="ls-screen" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#090d16"/>
+      <stop offset="100%" stop-color="#0f172a"/>
+    </linearGradient>
+    <filter id="ls-shadow" x="30" y="160" width="160" height="40" filterUnits="userSpaceOnUse">
+      <feGaussianBlur stdDeviation="6" result="blur"/>
+    </filter>
+  </defs>
+
+  <!-- Ambient Shadow on Desk -->
+  <ellipse cx="110" cy="178" rx="65" ry="9" fill="#0f172a" opacity="0.3" filter="url(#ls-shadow)"/>
+
+  <!-- Anodized Aluminium Stand Base Plate -->
+  <polygon points="56,170 164,170 174,182 46,182" fill="url(#ls-metal)" stroke="#334155" stroke-width="1.2"/>
+  <ellipse cx="110" cy="176" rx="20" ry="2" fill="#0f172a" opacity="0.2"/>
+
+  <!-- Ergonomic Angled Riser Arms -->
+  <path d="M72 170 L78 128 L84 128" stroke="url(#ls-metal)" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M148 170 L142 128 L136 128" stroke="url(#ls-metal)" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <!-- Silicone Anti-Slip Hooks -->
+  <rect x="74" y="142" width="6" height="14" rx="2" fill="#0f172a"/>
+  <rect x="140" y="142" width="6" height="14" rx="2" fill="#0f172a"/>
+
+  <!-- MacBook Pro Chassis (Angled Open on Riser) -->
+  <!-- Keyboard Base (Isometric Deck) -->
+  <polygon points="52,142 168,142 176,158 44,158" fill="url(#ls-mac)" stroke="#475569" stroke-width="1"/>
+  <!-- Recessed Keyboard Well -->
+  <polygon points="62,144 158,144 163,153 57,153" fill="#020617"/>
+  <!-- Key Grid Lines -->
+  <line x1="68" y1="147" x2="152" y2="147" stroke="#334155" stroke-width="1"/>
+  <line x1="64" y1="150" x2="156" y2="150" stroke="#334155" stroke-width="1"/>
+  <!-- Force Touch Trackpad -->
+  <polygon points="95,154 125,154 127,157 93,157" fill="#1e293b"/>
+
+  <!-- Retina Display Lid (Open at 115° Angle) -->
+  <polygon points="50,48 170,48 168,142 52,142" fill="url(#ls-mac)" stroke="#475569" stroke-width="1.5"/>
+  <!-- Display Screen Glass Panel -->
+  <polygon points="54,52 166,52 164,138 56,138" fill="url(#ls-screen)"/>
+
+  <!-- Screen Content: Code Editor & Terminal -->
+  <!-- Top bar -->
+  <rect x="58" y="56" width="104" height="8" rx="1.5" fill="#1e293b"/>
+  <circle cx="63" cy="60" r="1.5" fill="#ef4444"/>
+  <circle cx="68" cy="60" r="1.5" fill="#f59e0b"/>
+  <circle cx="73" cy="60" r="1.5" fill="#10b981"/>
+  <text x="110" y="62" font-family="system-ui" font-size="4" fill="#94a3b8" text-anchor="middle">workspace.ts</text>
+
+  <!-- Code Lines -->
+  <line x1="62" y1="70" x2="98" y2="70" stroke="#0d9488" stroke-width="1.8" stroke-linecap="round"/>
+  <line x1="62" y1="76" x2="142" y2="76" stroke="#38bdf8" stroke-width="1.8" stroke-linecap="round"/>
+  <line x1="68" y1="82" x2="128" y2="82" stroke="#f97316" stroke-width="1.8" stroke-linecap="round"/>
+  <line x1="68" y1="88" x2="114" y2="88" stroke="#a3e635" stroke-width="1.8" stroke-linecap="round"/>
+  <line x1="62" y1="94" x2="88" y2="94" stroke="#f43f5e" stroke-width="1.8" stroke-linecap="round"/>
+
+  <!-- Mini Terminal Window -->
+  <rect x="62" y="100" width="96" height="32" rx="2" fill="#020617" opacity="0.9"/>
+  <text x="66" y="110" font-family="monospace" font-size="4.5" fill="#2dd4bf">monis:bali$ dev</text>
+  <text x="66" y="118" font-family="monospace" font-size="4" fill="#94a3b8">Ready on :3000</text>
+  <line x1="66" y1="124" x2="110" y2="124" stroke="#22c55e" stroke-width="1.5" stroke-linecap="round"/>
 </svg>

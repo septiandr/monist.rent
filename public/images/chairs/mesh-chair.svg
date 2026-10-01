@@ -1,27 +1,90 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="400" height="500" viewBox="0 0 400 500">
-  <!-- same 30° top-front angle -->
-  <!-- backrest -->
-  <path d="M120,60 Q200,40 280,60 L275,170 Q200,182 125,170 Z" fill="#e2e8f0" stroke="#94a3b8" stroke-width="2"/>
-  <!-- mesh lines -->
-  <line x1="150" y1="75" x2="150" y2="165" stroke="#cbd5e1" stroke-width="1"/>
-  <line x1="175" y1="65" x2="175" y2="170" stroke="#cbd5e1" stroke-width="1"/>
-  <line x1="200" y1="60" x2="200" y2="173" stroke="#cbd5e1" stroke-width="1"/>
-  <line x1="225" y1="65" x2="225" y2="170" stroke="#cbd5e1" stroke-width="1"/>
-  <line x1="250" y1="75" x2="250" y2="165" stroke="#cbd5e1" stroke-width="1"/>
-  <!-- seat top surface -->
-  <polygon points="105,185 295,185 320,172 80,172" fill="#94a3b8"/>
-  <!-- seat front face -->
-  <polygon points="80,172 320,172 320,190 80,190" fill="#64748b"/>
-  <!-- armrests -->
-  <rect x="78" y="170" width="30" height="8" rx="3" fill="#475569"/>
-  <rect x="292" y="170" width="30" height="8" rx="3" fill="#475569"/>
-  <!-- stem -->
-  <rect x="190" y="190" width="20" height="50" rx="4" fill="#64748b"/>
-  <!-- base -->
-  <ellipse cx="200" cy="275" rx="65" ry="22" fill="none" stroke="#64748b" stroke-width="3"/>
-  <!-- wheels -->
-  <circle cx="145" cy="285" r="8" fill="#334155"/>
-  <circle cx="175" cy="298" r="8" fill="#334155"/>
-  <circle cx="225" cy="298" r="8" fill="#334155"/>
-  <circle cx="255" cy="285" r="8" fill="#334155"/>
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="500" viewBox="0 0 400 500" fill="none">
+  <defs>
+    <linearGradient id="mc-frame" x1="120" y1="40" x2="280" y2="190" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#1e293b"/>
+      <stop offset="50%" stop-color="#334155"/>
+      <stop offset="100%" stop-color="#0f172a"/>
+    </linearGradient>
+    <linearGradient id="mc-mesh" x1="130" y1="50" x2="270" y2="175" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#475569" stop-opacity="0.85"/>
+      <stop offset="100%" stop-color="#1e293b" stop-opacity="0.95"/>
+    </linearGradient>
+    <linearGradient id="mc-seat" x1="80" y1="180" x2="320" y2="215" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#334155"/>
+      <stop offset="50%" stop-color="#475569"/>
+      <stop offset="100%" stop-color="#1e293b"/>
+    </linearGradient>
+    <linearGradient id="mc-chrome" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#94a3b8"/>
+      <stop offset="40%" stop-color="#f8fafc"/>
+      <stop offset="70%" stop-color="#cbd5e1"/>
+      <stop offset="100%" stop-color="#64748b"/>
+    </linearGradient>
+    <pattern id="mc-weave" width="6" height="6" patternUnits="userSpaceOnUse">
+      <path d="M 0 3 L 6 3 M 3 0 L 3 6" stroke="#64748b" stroke-width="0.8" opacity="0.4"/>
+    </pattern>
+    <filter id="mc-shadow" x="80" y="320" width="240" height="60" filterUnits="userSpaceOnUse">
+      <feGaussianBlur stdDeviation="10" result="blur"/>
+    </filter>
+  </defs>
+
+  <!-- Ambient Floor Shadow -->
+  <ellipse cx="200" cy="340" rx="95" ry="14" fill="#0f172a" opacity="0.28" filter="url(#mc-shadow)"/>
+  <ellipse cx="200" cy="338" rx="70" ry="7" fill="#0f172a" opacity="0.35"/>
+
+  <!-- Five-Star Base Spoke (Rear) -->
+  <line x1="200" y1="286" x2="200" y2="330" stroke="url(#mc-chrome)" stroke-width="6" stroke-linecap="round"/>
+  <circle cx="200" cy="332" r="7" fill="#0f172a"/>
+
+  <!-- Left/Right Rear Base Spokes -->
+  <line x1="200" y1="286" x2="135" y2="310" stroke="url(#mc-chrome)" stroke-width="6" stroke-linecap="round"/>
+  <circle cx="135" cy="312" r="7" fill="#0f172a"/>
+  <line x1="200" y1="286" x2="265" y2="310" stroke="url(#mc-chrome)" stroke-width="6" stroke-linecap="round"/>
+  <circle cx="265" cy="312" r="7" fill="#0f172a"/>
+
+  <!-- Front Left & Right Base Spokes -->
+  <line x1="200" y1="286" x2="150" y2="336" stroke="url(#mc-chrome)" stroke-width="7" stroke-linecap="round"/>
+  <circle cx="150" cy="338" r="8" fill="#1e293b" stroke="#0f172a" stroke-width="2"/>
+  <circle cx="150" cy="338" r="4" fill="#475569"/>
+
+  <line x1="200" y1="286" x2="250" y2="336" stroke="url(#mc-chrome)" stroke-width="7" stroke-linecap="round"/>
+  <circle cx="250" cy="338" r="8" fill="#1e293b" stroke="#0f172a" stroke-width="2"/>
+  <circle cx="250" cy="338" r="4" fill="#475569"/>
+
+  <!-- Base Center Hub -->
+  <circle cx="200" cy="286" r="14" fill="url(#mc-chrome)"/>
+
+  <!-- Hydraulic Gas-Lift Cylinder Column -->
+  <rect x="193" y="228" width="14" height="58" rx="3" fill="url(#mc-chrome)"/>
+  <rect x="190" y="244" width="20" height="8" rx="2" fill="#0f172a"/>
+
+  <!-- Mechanism Box & Tilt Tension Lever -->
+  <path d="M165 214 L235 214 L225 230 L175 230 Z" fill="#0f172a"/>
+  <line x1="228" y1="222" x2="246" y2="226" stroke="#475569" stroke-width="3" stroke-linecap="round"/>
+  <circle cx="248" cy="226" r="3" fill="#0d9488"/>
+
+  <!-- Left Armrest Assembly (3D Adjustable) -->
+  <path d="M106 195 L95 195 L95 142 L132 142" stroke="#1e293b" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+  <rect x="84" y="136" width="52" height="12" rx="6" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+
+  <!-- Right Armrest Assembly -->
+  <path d="M294 195 L305 195 L305 142 L268 142" stroke="#1e293b" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+  <rect x="264" y="136" width="52" height="12" rx="6" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+
+  <!-- Ergonomic Mesh Backrest Frame -->
+  <path d="M125 44 C165 28, 235 28, 275 44 C288 78, 288 145, 272 184 C235 196, 165 196, 128 184 C112 145, 112 78, 125 44 Z" fill="url(#mc-frame)" stroke="#475569" stroke-width="2"/>
+
+  <!-- Breathable Mesh Weave Membrane -->
+  <path d="M132 50 C168 36, 232 36, 268 50 C280 82, 280 142, 265 178 C232 188, 168 188, 135 178 C120 142, 120 82, 132 50 Z" fill="url(#mc-mesh)"/>
+  <path d="M132 50 C168 36, 232 36, 268 50 C280 82, 280 142, 265 178 C232 188, 168 188, 135 178 C120 142, 120 82, 132 50 Z" fill="url(#mc-weave)"/>
+
+  <!-- Adjustable Lumbar Support Cushion Spine -->
+  <rect x="146" y="124" width="108" height="16" rx="8" fill="#0f172a" stroke="#0d9488" stroke-width="1.5" opacity="0.9"/>
+  <circle cx="200" cy="132" r="4" fill="#2dd4bf"/>
+
+  <!-- Waterfall Contoured Ergonomic Seat Cushion -->
+  <!-- Top Surface (Isometric Angle) -->
+  <path d="M105 186 C155 175, 245 175, 295 186 C316 195, 318 208, 295 218 C245 228, 155 228, 105 218 C82 208, 84 195, 105 186 Z" fill="url(#mc-seat)" stroke="#64748b" stroke-width="1"/>
+  <!-- Front Edge Waterfall Roll -->
+  <path d="M105 218 C155 228, 245 228, 295 218 L292 228 C245 238, 155 238, 108 228 Z" fill="#0f172a"/>
 </svg>

@@ -1,12 +1,56 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 120 120">
-  <polygon points="20,46 100,46 104,40 16,40" fill="#475569"/>
-  <polygon points="20,46 100,46 97,70 23,70" fill="#334155"/>
-  <rect x="13" y="36" width="14" height="10" rx="3" fill="#64748b"/>
-  <rect x="93" y="36" width="14" height="10" rx="3" fill="#64748b"/>
-  <circle cx="60" cy="44" r="5" fill="#fbbf24" opacity="0.75"/>
-  <ellipse cx="55" cy="48" rx="20" ry="7" fill="#1e293b"/>
-  <circle cx="90" cy="78" r="13" fill="#1e293b"/>
-  <circle cx="90" cy="78" r="5" fill="#64748b"/>
-  <circle cx="30" cy="78" r="13" fill="#1e293b"/>
-  <circle cx="30" cy="78" r="5" fill="#64748b"/>
+<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200" fill="none">
+  <defs>
+    <linearGradient id="sc-sage" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#84cc16"/>
+      <stop offset="50%" stop-color="#65a30d"/>
+      <stop offset="100%" stop-color="#4d7c0f"/>
+    </linearGradient>
+    <linearGradient id="sc-chrome" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#cbd5e1"/>
+      <stop offset="50%" stop-color="#ffffff"/>
+      <stop offset="100%" stop-color="#94a3b8"/>
+    </linearGradient>
+    <filter id="sc-shadow" x="20" y="160" width="160" height="30" filterUnits="userSpaceOnUse">
+      <feGaussianBlur stdDeviation="5" result="blur"/>
+    </filter>
+  </defs>
+
+  <ellipse cx="100" cy="174" rx="72" ry="10" fill="#0f172a" opacity="0.3" filter="url(#sc-shadow)"/>
+
+  <!-- Front Wheel & Tire -->
+  <circle cx="56" cy="152" r="22" fill="#1e293b" stroke="#0f172a" stroke-width="4"/>
+  <circle cx="56" cy="152" r="12" fill="url(#sc-chrome)"/>
+
+  <!-- Rear Wheel & Tire -->
+  <circle cx="146" cy="152" r="22" fill="#1e293b" stroke="#0f172a" stroke-width="4"/>
+  <circle cx="146" cy="152" r="12" fill="url(#sc-chrome)"/>
+
+  <!-- Under-Floor Footboard Platform -->
+  <rect x="74" y="148" width="56" height="8" rx="3" fill="#1e293b"/>
+
+  <!-- Rear Bodywork (Curved Vespa Cowl) -->
+  <path d="M102 148 C102 120, 115 106, 142 106 C165 106, 172 124, 168 152 L116 152 Z" fill="url(#sc-sage)" stroke="#3f6212" stroke-width="1.5"/>
+
+  <!-- Stitched Tan Leather Saddle Seat -->
+  <path d="M100 110 C120 102, 146 102, 160 112 L158 120 L98 120 Z" fill="#b45309" stroke="#78350f" stroke-width="1.2"/>
+  <line x1="126" y1="108" x2="126" y2="120" stroke="#fde047" stroke-width="1" stroke-dasharray="2,2"/>
+
+  <!-- Front Legshield & Steering Column (Sage Green) -->
+  <path d="M68 148 L68 96 C68 84, 76 80, 84 80 L88 90 L80 148 Z" fill="url(#sc-sage)" stroke="#3f6212" stroke-width="1.5"/>
+
+  <!-- Front Mudguard Fender -->
+  <path d="M42 138 C42 124, 66 124, 70 138 Z" fill="url(#sc-sage)"/>
+
+  <!-- Handlebar Headset & Round Chrome Headlamp -->
+  <rect x="70" y="70" width="30" height="12" rx="5" fill="url(#sc-sage)"/>
+  <circle cx="68" cy="76" r="8" fill="url(#sc-chrome)"/>
+  <circle cx="68" cy="76" r="6" fill="#fef08a"/>
+  <!-- Chrome Mirror Stalk -->
+  <line x1="76" y1="70" x2="72" y2="52" stroke="url(#sc-chrome)" stroke-width="2"/>
+  <circle cx="72" cy="50" r="5" fill="url(#sc-chrome)"/>
+
+  <!-- Retro Nomad Open-Face Helmet resting on seat -->
+  <circle cx="132" cy="94" r="14" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1.5"/>
+  <path d="M120 94 Q132 86 144 94" stroke="#0d9488" stroke-width="4" fill="none"/>
+  <line x1="120" y1="94" x2="122" y2="102" stroke="#475569" stroke-width="2"/>
 </svg>

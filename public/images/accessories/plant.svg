@@ -1,15 +1,73 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200">
-  <!-- same 30° top-front angle -->
-  <!-- pot top ellipse -->
-  <ellipse cx="100" cy="120" rx="40" ry="14" fill="#a16207"/>
-  <!-- pot front face -->
-  <polygon points="60,120 140,120 135,158 65,158" fill="#92400e"/>
-  <!-- soil -->
-  <ellipse cx="100" cy="120" rx="34" ry="11" fill="#78350f"/>
-  <!-- stems/leaves from above -->
-  <line x1="100" y1="120" x2="100" y2="65" stroke="#166534" stroke-width="3"/>
-  <ellipse cx="80" cy="60" rx="22" ry="28" fill="#22c55e" opacity="0.65"/>
-  <ellipse cx="120" cy="65" rx="18" ry="24" fill="#16a34a" opacity="0.6"/>
-  <ellipse cx="100" cy="45" rx="17" ry="22" fill="#15803d" opacity="0.55"/>
-  <ellipse cx="75" cy="82" rx="15" ry="18" fill="#22c55e" opacity="0.4"/>
+<svg xmlns="http://www.w3.org/2000/svg" width="220" height="240" viewBox="0 0 220 240" fill="none">
+  <defs>
+    <linearGradient id="pl-pot" x1="60" y1="140" x2="160" y2="220" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#ea580c"/>
+      <stop offset="50%" stop-color="#c2410c"/>
+      <stop offset="100%" stop-color="#7c2d12"/>
+    </linearGradient>
+    <linearGradient id="pl-leaf1" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#4ade80"/>
+      <stop offset="40%" stop-color="#16a34a"/>
+      <stop offset="100%" stop-color="#14532d"/>
+    </linearGradient>
+    <linearGradient id="pl-leaf2" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#86efac"/>
+      <stop offset="50%" stop-color="#22c55e"/>
+      <stop offset="100%" stop-color="#166534"/>
+    </linearGradient>
+    <linearGradient id="pl-leaf3" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#22c55e"/>
+      <stop offset="60%" stop-color="#15803d"/>
+      <stop offset="100%" stop-color="#052e16"/>
+    </linearGradient>
+    <filter id="pl-shadow" x="50" y="210" width="120" height="30" filterUnits="userSpaceOnUse">
+      <feGaussianBlur stdDeviation="6" result="blur"/>
+    </filter>
+  </defs>
+
+  <!-- Ambient Pot Shadow on Desk -->
+  <ellipse cx="110" cy="222" rx="46" ry="8" fill="#451a03" opacity="0.35" filter="url(#pl-shadow)"/>
+  <ellipse cx="110" cy="220" rx="34" ry="5" fill="#451a03" opacity="0.45"/>
+
+  <!-- Terracotta Ceramic Pot Body -->
+  <path d="M72 152 L82 216 Q110 224 138 216 L148 152 Z" fill="url(#pl-pot)" stroke="#7c2d12" stroke-width="1.5"/>
+
+  <!-- Artisanal Pot Rim -->
+  <ellipse cx="110" cy="152" rx="38" ry="10" fill="#ea580c" stroke="#9a3412" stroke-width="1.5"/>
+  <ellipse cx="110" cy="152" rx="34" ry="8" fill="#7c2d12"/>
+
+  <!-- Organic Potting Soil -->
+  <ellipse cx="110" cy="153" rx="31" ry="7" fill="#451a03"/>
+  <circle cx="102" cy="154" r="1.5" fill="#78350f"/>
+  <circle cx="118" cy="153" r="1.5" fill="#78350f"/>
+  <circle cx="112" cy="155" r="1.2" fill="#78350f"/>
+
+  <!-- Main Stems Rising from Soil -->
+  <path d="M110 152 Q105 110 82 72" stroke="#166534" stroke-width="4.5" stroke-linecap="round" fill="none"/>
+  <path d="M110 152 Q118 105 142 65" stroke="#15803d" stroke-width="4.5" stroke-linecap="round" fill="none"/>
+  <path d="M110 152 Q112 110 108 38" stroke="#14532d" stroke-width="5" stroke-linecap="round" fill="none"/>
+
+  <!-- Left Low Monstera Leaf -->
+  <path d="M82 72 C55 60, 40 95, 62 120 C76 130, 92 110, 84 85 Z" fill="url(#pl-leaf3)"/>
+  <!-- Fenestrations (Monstera Leaf Cutouts) -->
+  <ellipse cx="64" cy="85" rx="5" ry="2" transform="rotate(-30 64 85)" fill="#ffffff" opacity="0.08"/>
+  <ellipse cx="58" cy="98" rx="6" ry="2" transform="rotate(-15 58 98)" fill="#ffffff" opacity="0.08"/>
+
+  <!-- Right Spread Monstera Leaf -->
+  <path d="M142 65 C175 48, 192 88, 168 116 C148 128, 132 105, 140 78 Z" fill="url(#pl-leaf2)"/>
+  <!-- Leaf Cutout notches -->
+  <path d="M152 75 C160 82, 172 82, 178 78" stroke="#15803d" stroke-width="1.5" fill="none"/>
+  <path d="M150 90 C162 96, 174 95, 180 88" stroke="#15803d" stroke-width="1.5" fill="none"/>
+
+  <!-- Crown Top Big Majestic Monstera Leaf -->
+  <path d="M108 38 C75 10, 145 10, 112 38 C145 32, 160 62, 134 82 C108 102, 85 80, 82 58 C80 42, 95 36, 108 38 Z" fill="url(#pl-leaf1)"/>
+  <!-- Leaf Rib & Fenestrations -->
+  <path d="M108 38 Q118 55 125 76" stroke="#86efac" stroke-width="1.5" fill="none" opacity="0.7"/>
+  <ellipse cx="98" cy="46" rx="6" ry="2" transform="rotate(40 98 46)" fill="#14532d"/>
+  <ellipse cx="126" cy="48" rx="6" ry="2" transform="rotate(-35 126 48)" fill="#14532d"/>
+  <ellipse cx="132" cy="64" rx="7" ry="2.2" transform="rotate(-20 132 64)" fill="#14532d"/>
+
+  <!-- Leaf Dew Drops / Highlight -->
+  <circle cx="106" cy="30" r="1.8" fill="#ffffff" opacity="0.75"/>
+  <circle cx="148" cy="74" r="1.5" fill="#ffffff" opacity="0.6"/>
 </svg>

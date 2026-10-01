@@ -1,13 +1,94 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200">
-  <!-- same 30° top-front angle -->
-  <!-- monitor top surface -->
-  <polygon points="15,50 185,50 190,42 10,42" fill="#334155"/>
-  <!-- monitor front face -->
-  <rect x="15" y="50" width="170" height="85" rx="4" fill="#1e293b"/>
-  <rect x="20" y="55" width="160" height="75" rx="2" fill="#0f172a"/>
-  <!-- screen glare -->
-  <rect x="25" y="60" width="50" height="3" rx="1" fill="#334155" opacity="0.4"/>
-  <!-- stand -->
-  <polygon points="85,135 115,135 120,155 80,155" fill="#475569"/>
-  <ellipse cx="100" cy="160" rx="25" ry="7" fill="#64748b"/>
+<svg xmlns="http://www.w3.org/2000/svg" width="340" height="240" viewBox="0 0 340 240" fill="none">
+  <defs>
+    <linearGradient id="uw-bezel" x1="20" y1="20" x2="320" y2="150" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#0f172a"/>
+      <stop offset="50%" stop-color="#1e293b"/>
+      <stop offset="100%" stop-color="#0f172a"/>
+    </linearGradient>
+    <linearGradient id="uw-screen" x1="30" y1="30" x2="310" y2="140" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#090d16"/>
+      <stop offset="50%" stop-color="#0f172a"/>
+      <stop offset="100%" stop-color="#131d31"/>
+    </linearGradient>
+    <linearGradient id="uw-glow" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0d9488" stop-opacity="0.25"/>
+      <stop offset="100%" stop-color="#f97316" stop-opacity="0.15"/>
+    </linearGradient>
+    <linearGradient id="uw-arm" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#334155"/>
+      <stop offset="50%" stop-color="#64748b"/>
+      <stop offset="100%" stop-color="#1e293b"/>
+    </linearGradient>
+    <filter id="uw-backlight" x="10" y="10" width="320" height="160" filterUnits="userSpaceOnUse">
+      <feGaussianBlur stdDeviation="8" result="blur"/>
+    </filter>
+  </defs>
+
+  <!-- Ambient Screen Backlight Glow -->
+  <rect x="26" y="24" width="288" height="124" rx="16" fill="url(#uw-glow)" filter="url(#uw-backlight)"/>
+
+  <!-- Gas-Spring Articulating Arm (Behind Monitor) -->
+  <!-- Desk Edge Clamp Base -->
+  <rect x="156" y="180" width="28" height="34" rx="4" fill="#0f172a" stroke="#334155" stroke-width="1.5"/>
+  <rect x="150" y="210" width="40" height="10" rx="3" fill="#1e293b"/>
+  <!-- Clamp Knob -->
+  <circle cx="170" cy="225" r="5" fill="#475569"/>
+
+  <!-- Lower Arm Segment -->
+  <path d="M170 190 L188 152" stroke="url(#uw-arm)" stroke-width="12" stroke-linecap="round"/>
+  <!-- Middle Elbow Joint -->
+  <circle cx="188" cy="152" r="8" fill="#0f172a" stroke="#64748b" stroke-width="2"/>
+  <!-- Upper Arm Segment to VESA Plate -->
+  <path d="M188 152 L170 115" stroke="url(#uw-arm)" stroke-width="10" stroke-linecap="round"/>
+  <rect x="155" y="102" width="30" height="26" rx="4" fill="#0f172a" stroke="#475569" stroke-width="1.5"/>
+
+  <!-- Curved UltraWide Monitor Chassis (Subtle 1800R Curve) -->
+  <path d="M22 28 C120 22, 220 22, 318 28 L314 146 C220 152, 120 152, 26 146 Z" fill="url(#uw-bezel)" stroke="#334155" stroke-width="2"/>
+
+  <!-- Curved OLED/IPS Glass Panel -->
+  <path d="M26 32 C120 27, 220 27, 314 32 L310 142 C220 147, 120 147, 30 142 Z" fill="url(#uw-screen)"/>
+
+  <!-- UI Code Editor & Workspace Interface Display -->
+  <!-- Top Window Bar -->
+  <rect x="36" y="38" width="268" height="12" rx="3" fill="#1e293b" opacity="0.8"/>
+  <circle cx="44" cy="44" r="2.5" fill="#ef4444"/>
+  <circle cx="52" cy="44" r="2.5" fill="#f59e0b"/>
+  <circle cx="60" cy="44" r="2.5" fill="#10b981"/>
+  <text x="170" y="46" font-family="system-ui, sans-serif" font-size="6.5" font-weight="600" fill="#94a3b8" text-anchor="middle">monis.rent/bali-office • index.tsx</text>
+
+  <!-- Left Sidebar (Project Tree) -->
+  <rect x="36" y="52" width="46" height="84" rx="2" fill="#0f172a" opacity="0.6"/>
+  <line x1="42" y1="60" x2="72" y2="60" stroke="#0d9488" stroke-width="2" stroke-linecap="round"/>
+  <line x1="42" y1="68" x2="66" y2="68" stroke="#64748b" stroke-width="1.5" stroke-linecap="round"/>
+  <line x1="42" y1="75" x2="76" y2="75" stroke="#64748b" stroke-width="1.5" stroke-linecap="round"/>
+  <line x1="42" y1="82" x2="58" y2="82" stroke="#64748b" stroke-width="1.5" stroke-linecap="round"/>
+
+  <!-- Center Code Editor -->
+  <rect x="86" y="52" width="138" height="84" rx="2" fill="#090d16" opacity="0.9"/>
+  <text x="94" y="64" font-family="monospace" font-size="5" fill="#f43f5e">import</text>
+  <text x="114" y="64" font-family="monospace" font-size="5" fill="#38bdf8">{ BaliNomad }</text>
+  <text x="156" y="64" font-family="monospace" font-size="5" fill="#f43f5e">from</text>
+  <text x="172" y="64" font-family="monospace" font-size="5" fill="#a3e635">"@monis/bali"</text>
+
+  <text x="94" y="74" font-family="monospace" font-size="5" fill="#818cf8">const</text>
+  <text x="112" y="74" font-family="monospace" font-size="5" fill="#fbbf24">perfectWorkspace</text>
+  <text x="164" y="74" font-family="monospace" font-size="5" fill="#38bdf8">=</text>
+  <text x="170" y="74" font-family="monospace" font-size="5" fill="#f43f5e">await</text>
+  <text x="188" y="74" font-family="monospace" font-size="5" fill="#2dd4bf">rent()</text>
+
+  <rect x="94" y="82" width="118" height="48" rx="2" fill="#1e293b" opacity="0.4"/>
+  <line x1="102" y1="92" x2="198" y2="92" stroke="#0d9488" stroke-width="2" stroke-linecap="round"/>
+  <line x1="102" y1="100" x2="182" y2="100" stroke="#f97316" stroke-width="2" stroke-linecap="round"/>
+  <line x1="102" y1="108" x2="164" y2="108" stroke="#38bdf8" stroke-width="2" stroke-linecap="round"/>
+  <line x1="102" y1="116" x2="190" y2="116" stroke="#a3e635" stroke-width="2" stroke-linecap="round"/>
+
+  <!-- Right Live App Preview -->
+  <rect x="228" y="52" width="76" height="84" rx="2" fill="#1e293b" opacity="0.6"/>
+  <!-- Mini Bali Sunset Chart -->
+  <path d="M234 110 Q252 86 268 96 T300 80" stroke="#f97316" stroke-width="2" fill="none"/>
+  <circle cx="282" cy="74" r="7" fill="#fbbf24" opacity="0.8"/>
+  <text x="266" y="126" font-family="system-ui" font-size="6" font-weight="700" fill="#2dd4bf" text-anchor="middle">LIVE IN BALI</text>
+
+  <!-- Screen Gloss Glare Highlight -->
+  <path d="M26 32 L150 32 L80 142 L28 142 Z" fill="#ffffff" opacity="0.04"/>
 </svg>

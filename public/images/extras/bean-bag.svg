@@ -1,6 +1,30 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 120 120">
-  <ellipse cx="60" cy="62" rx="50" ry="32" fill="#f97316" opacity="0.5"/>
-  <ellipse cx="60" cy="56" rx="44" ry="28" fill="#fb923c" opacity="0.45"/>
-  <ellipse cx="55" cy="48" rx="30" ry="18" fill="#fdba74" opacity="0.3"/>
-  <ellipse cx="60" cy="90" rx="40" ry="7" fill="#f97316" opacity="0.08"/>
+<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200" fill="none">
+  <defs>
+    <linearGradient id="bb-linen" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#fdba74"/>
+      <stop offset="45%" stop-color="#fb923c"/>
+      <stop offset="100%" stop-color="#ea580c"/>
+    </linearGradient>
+    <filter id="bb-shadow" x="20" y="140" width="160" height="40" filterUnits="userSpaceOnUse">
+      <feGaussianBlur stdDeviation="8" result="blur"/>
+    </filter>
+  </defs>
+
+  <ellipse cx="100" cy="165" rx="68" ry="14" fill="#431407" opacity="0.3" filter="url(#bb-shadow)"/>
+
+  <!-- Linen Fabric Carry Loop Handle -->
+  <path d="M92 48 Q100 32 108 48" stroke="#7c2d12" stroke-width="6" stroke-linecap="round" fill="none"/>
+
+  <!-- Ergonomic Teardrop Lounger Bean Bag Body -->
+  <path d="M100 45 C122 55, 155 95, 162 135 C168 160, 145 174, 100 174 C55 174, 32 160, 38 135 C45 95, 78 55, 100 45 Z" fill="url(#bb-linen)" stroke="#9a3412" stroke-width="1.8"/>
+
+  <!-- Double French Stitch Seams (Creases and Folds) -->
+  <path d="M100 45 C102 85, 115 130, 100 174" stroke="#7c2d12" stroke-width="2.5" fill="none"/>
+  <path d="M100 45 C102 85, 115 130, 100 174" stroke="#fde047" stroke-width="1" stroke-dasharray="3,3" fill="none" opacity="0.6"/>
+
+  <path d="M60 120 C75 140, 95 145, 120 142" stroke="#9a3412" stroke-width="1.5" stroke-linecap="round" fill="none" opacity="0.5"/>
+  <path d="M48 145 C65 156, 85 160, 100 162" stroke="#9a3412" stroke-width="1.5" stroke-linecap="round" fill="none" opacity="0.5"/>
+
+  <!-- Fabric Indentation Highlight (Soft Plump Seat) -->
+  <ellipse cx="100" cy="120" rx="36" ry="18" fill="#fed7aa" opacity="0.25"/>
 </svg>

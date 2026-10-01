@@ -1,11 +1,43 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 120 120">
-  <polygon points="14,20 106,20 110,16 10,16" fill="#94a3b8"/>
-  <polygon points="14,20 106,20 106,88 14,88" fill="#64748b"/>
-  <rect x="17" y="36" width="86" height="4" fill="#94a3b8"/>
-  <rect x="17" y="53" width="86" height="4" fill="#94a3b8"/>
-  <rect x="17" y="70" width="86" height="4" fill="#94a3b8"/>
-  <rect x="22" y="24" width="15" height="10" rx="2" fill="#f97316" opacity="0.5"/>
-  <rect x="48" y="26" width="10" height="8" rx="2" fill="#0ea5e9" opacity="0.4"/>
-  <rect x="24" y="41" width="12" height="10" rx="2" fill="#22c55e" opacity="0.4"/>
-  <rect x="56" y="42" width="18" height="9" rx="2" fill="#eab308" opacity="0.4"/>
+<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200" fill="none">
+  <defs>
+    <linearGradient id="ts-wood" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#b45309"/>
+      <stop offset="50%" stop-color="#d97706"/>
+      <stop offset="100%" stop-color="#92400e"/>
+    </linearGradient>
+    <filter id="ts-shadow" x="20" y="165" width="160" height="25" filterUnits="userSpaceOnUse">
+      <feGaussianBlur stdDeviation="5" result="blur"/>
+    </filter>
+  </defs>
+
+  <ellipse cx="100" cy="176" rx="66" ry="8" fill="#0f172a" opacity="0.3" filter="url(#ts-shadow)"/>
+
+  <!-- Steel Vertical Uprights (Industrial Matte Black) -->
+  <line x1="46" y1="36" x2="46" y2="174" stroke="#1e293b" stroke-width="4.5" stroke-linecap="round"/>
+  <line x1="154" y1="36" x2="154" y2="174" stroke="#1e293b" stroke-width="4.5" stroke-linecap="round"/>
+  <!-- Rear Frame Struts -->
+  <line x1="46" y1="36" x2="154" y2="174" stroke="#334155" stroke-width="1.5" stroke-dasharray="3,3" opacity="0.3"/>
+  <line x1="154" y1="36" x2="46" y2="174" stroke="#334155" stroke-width="1.5" stroke-dasharray="3,3" opacity="0.3"/>
+
+  <!-- Tier 1 Shelf (Top) with Teak Wood Surface -->
+  <polygon points="40,54 160,54 164,62 36,62" fill="url(#ts-wood)" stroke="#78350f" stroke-width="1"/>
+  <!-- Books on Top Shelf -->
+  <rect x="52" y="38" width="8" height="16" rx="1.5" fill="#f43f5e"/>
+  <rect x="62" y="34" width="7" height="20" rx="1.5" fill="#0d9488"/>
+  <rect x="71" y="40" width="8" height="14" rx="1.5" fill="#f59e0b"/>
+
+  <!-- Tier 2 Shelf (Middle) -->
+  <polygon points="40,94 160,94 164,102 36,102" fill="url(#ts-wood)" stroke="#78350f" stroke-width="1"/>
+  <!-- Storage Container on Middle Shelf -->
+  <rect x="50" y="78" width="42" height="16" rx="2" fill="#334155"/>
+  <rect x="108" y="76" width="36" height="18" rx="2" fill="#0f172a"/>
+
+  <!-- Tier 3 Shelf (Lower) -->
+  <polygon points="40,134 160,134 164,142 36,142" fill="url(#ts-wood)" stroke="#78350f" stroke-width="1"/>
+  <!-- Potted succulent plant on lower shelf -->
+  <rect x="120" y="122" width="16" height="12" rx="2" fill="#c2410c"/>
+  <circle cx="128" cy="118" r="6" fill="#22c55e"/>
+
+  <!-- Tier 4 Shelf (Bottom) -->
+  <polygon points="40,166 160,166 164,174 36,174" fill="url(#ts-wood)" stroke="#78350f" stroke-width="1"/>
 </svg>
