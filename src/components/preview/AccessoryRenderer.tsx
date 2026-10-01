@@ -26,15 +26,15 @@ const accessoryLayouts: Record<string, { className: string; zIndex: number }> = 
     zIndex: 12,
   },
   "acc-laptop-stand": {
-    className: "left-[20%] bottom-[28%] w-[26%] max-w-[175px]",
+    className: "left-[20%] bottom-[50%] w-[26%] max-w-[175px]",
     zIndex: 16,
   },
   "acc-desk-lamp": {
-    className: "right-[15%] bottom-[31%] w-[27%] max-w-[185px]",
+    className: "right-[15%] bottom-[51%] w-[27%] max-w-[185px]",
     zIndex: 18,
   },
   "acc-plant": {
-    className: "left-[14%] bottom-[29%] w-[24%] max-w-[160px]",
+    className: "left-[14%] bottom-[51%] w-[24%] max-w-[100px]",
     zIndex: 18,
   },
 };

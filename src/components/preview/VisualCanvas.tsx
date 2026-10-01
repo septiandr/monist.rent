@@ -8,7 +8,23 @@ import { ChairRenderer } from "@/components/preview/ChairRenderer";
 import { AccessoryRenderer } from "@/components/preview/AccessoryRenderer";
 import { CanvasHotspots } from "@/components/preview/CanvasHotspots";
 import { CanvasToolbar } from "@/components/preview/CanvasToolbar";
-import { CanvasRoomBackdrop } from "@/components/preview/CanvasRoomBackdrop";
+
+function CanvasRoomBackdrop({
+  timeOfDay,
+  cameraAngle,
+}: {
+  timeOfDay: string;
+  cameraAngle: string;
+}) {
+  return (
+    <div
+      aria-hidden="true"
+      className={`absolute inset-0 transition-colors duration-700 ${
+        timeOfDay === "night" ? "bg-slate-950" : "bg-slate-100"
+      } ${cameraAngle === "blueprint" ? "opacity-70" : ""}`}
+    />
+  );
+}
 
 export function VisualCanvas() {
   const selectedDesk = useWorkspaceStore((state) => state.selectedDesk);
