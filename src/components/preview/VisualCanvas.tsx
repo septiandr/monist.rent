@@ -8,6 +8,7 @@ import { ChairRenderer } from "@/components/preview/ChairRenderer";
 import { AccessoryRenderer } from "@/components/preview/AccessoryRenderer";
 import { CanvasHotspots } from "@/components/preview/CanvasHotspots";
 import { CanvasToolbar } from "@/components/preview/CanvasToolbar";
+import { CanvasRoomBackdrop } from "@/components/preview/CanvasRoomBackdrop";
 
 export function VisualCanvas() {
   const selectedDesk = useWorkspaceStore((state) => state.selectedDesk);
@@ -15,81 +16,96 @@ export function VisualCanvas() {
   const selectedAccessories = useWorkspaceStore((state) => state.selectedAccessories);
   const isStandingMode = useWorkspaceStore((state) => state.isStandingMode);
   const isLampActive = useWorkspaceStore((state) => state.isLampActive);
-  const isNightMode = useWorkspaceStore((state) => state.isNightMode);
+  const timeOfDay = useWorkspaceStore((state) => state.timeOfDay);
+  const cameraAngle = useWorkspaceStore((state) => state.cameraAngle);
 
   const hasSelection = selectedDesk || selectedChair || selectedAccessories.length > 0;
   const isStandingDesk = selectedDesk?.id === "desk-standing";
   const hasLamp = selectedAccessories.some((a) => a.id === "acc-desk-lamp");
 
+  const cameraTransforms = {
+    perspective: { scale: 1, y: 0 },
+    focus: { scale: 1.15, y: -20 },
+    blueprint: { scale: 0.94, y: 0 },
+  };
+
   return (
-    <div
-      className={`relative flex flex-col w-full h-full min-h-[520px] rounded-2xl border transition-colors duration-500 overflow-hidden shadow-sm ${
-        isNightMode
-          ? "bg-gradient-to-b from-slate-900 via-slate-950 to-slate-900 border-slate-800"
-          : "bg-gradient-to-b from-slate-100/90 via-slate-50 to-teal-50/20 border-slate-200"
-      }`}
-    >
+    <div className="relative flex flex-col w-full h-full min-h-[540px] rounded-2xl border border-slate-200 shadow-xl overflow-hidden select-none">
       <CanvasToolbar />
 
-      {/* Main Studio Interactive Stage */}
-      <div className="relative flex-1 w-full min-h-[440px] overflow-hidden select-none">
-        {/* Curved Presentation Podium / Pedestal (as in client sketch) */}
-        <div
-          className={`absolute bottom-[6%] left-1/2 -translate-x-1/2 w-[92%] max-w-[720px] h-[72px] rounded-[100%] transition-colors duration-500 ${
-            isNightMode
-              ? "bg-slate-800/60 border border-slate-700/50 shadow-[0_20px_50px_rgba(0,0,0,0.8)]"
-              : "bg-white/80 border border-slate-200/90 shadow-[0_20px_50px_rgba(13,148,136,0.08)]"
-          }`}
-        />
+      {/* Main 3D Studio Arena */}
+      <div className="relative flex-1 w-full min-h-[460px] overflow-hidden">
+        {/* Architectural 3D Villa Room Backdrop */}
+        <CanvasRoomBackdrop timeOfDay={timeOfDay} cameraAngle={cameraAngle} />
 
-        {/* Ambient Lamp Illumination Wash over the Desk */}
-        {hasLamp && isLampActive && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="absolute right-[12%] bottom-[20%] w-[380px] h-[260px] bg-gradient-to-bl from-amber-300/25 via-amber-400/10 to-transparent rounded-full blur-2xl pointer-events-none z-14"
+        {/* Dynamic Studio Stage Container (Spring Morphing per Camera Mode) */}
+        <motion.div
+          animate={cameraTransforms[cameraAngle]}
+          transition={{ type: "spring", stiffness: 220, damping: 25 }}
+          className="relative w-full h-full"
+        >
+          {/* Studio Pedestal Platform */}
+          <div
+            className={`absolute bottom-[7%] left-1/2 -translate-x-1/2 w-[90%] max-w-[720px] h-[76px] rounded-[100%] transition-all duration-700 ${
+              cameraAngle === "blueprint"
+                ? "border-2 border-dashed border-cyan-400/40 bg-cyan-950/20"
+                : timeOfDay === "night"
+                  ? "bg-slate-800/80 border border-slate-700/60 shadow-[0_24px_60px_rgba(0,0,0,0.85)]"
+                  : "bg-white/90 border border-slate-200/90 shadow-[0_24px_60px_rgba(13,148,136,0.12)]"
+            }`}
           />
-        )}
 
-        {/* Desk Layer */}
-        <AnimatePresence mode="wait">
-          {selectedDesk && (
-            <DeskRenderer
-              key={selectedDesk.id}
-              desk={selectedDesk}
-              isStandingMode={isStandingMode}
+          {/* Volumetric Lamp Beam Projection */}
+          {hasLamp && isLampActive && cameraAngle !== "blueprint" && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="absolute right-[12%] bottom-[16%] w-[420px] h-[300px] bg-gradient-to-bl from-amber-300/35 via-amber-400/15 to-transparent rounded-full blur-2xl pointer-events-none z-14"
             />
           )}
-        </AnimatePresence>
 
-        {/* Chair Layer */}
-        <AnimatePresence mode="wait">
-          {selectedChair && (
-            <ChairRenderer key={selectedChair.id} chair={selectedChair} />
-          )}
-        </AnimatePresence>
+          {/* Desk Layer */}
+          <AnimatePresence mode="wait">
+            {selectedDesk && (
+              <DeskRenderer
+                key={selectedDesk.id}
+                desk={selectedDesk}
+                isStandingMode={isStandingMode}
+              />
+            )}
+          </AnimatePresence>
 
-        {/* Accessory Layer */}
-        <AnimatePresence>
-          {selectedAccessories.map((acc) => (
-            <AccessoryRenderer
-              key={acc.id}
-              accessory={acc}
-              isStandingMode={isStandingMode}
-              isStandingDesk={isStandingDesk}
-            />
-          ))}
-        </AnimatePresence>
+          {/* Chair Layer */}
+          <AnimatePresence mode="wait">
+            {selectedChair && (
+              <ChairRenderer key={selectedChair.id} chair={selectedChair} />
+            )}
+          </AnimatePresence>
 
-        {/* Interactive In-Canvas Hotspots ('+ Add Monitor!', '+ Place a Plant!') */}
-        {selectedDesk && <CanvasHotspots />}
+          {/* Accessories Layer */}
+          <AnimatePresence>
+            {selectedAccessories.map((acc) => (
+              <AccessoryRenderer
+                key={acc.id}
+                accessory={acc}
+                isStandingMode={isStandingMode}
+                isStandingDesk={isStandingDesk}
+              />
+            ))}
+          </AnimatePresence>
+
+          {/* In-Canvas Hotspots */}
+          {selectedDesk && cameraAngle !== "blueprint" && <CanvasHotspots />}
+        </motion.div>
 
         {/* Empty Canvas State */}
         {!hasSelection && (
-          <div className="absolute inset-0 flex flex-col items-center justify-center gap-3">
-            <ImageOff className="w-12 h-12 text-slate-300" />
-            <p className="text-sm font-medium text-slate-400">
+          <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 z-30">
+            <div className="flex items-center justify-center w-16 h-16 rounded-2xl bg-white/80 shadow-md">
+              <ImageOff className="w-8 h-8 text-teal-600" />
+            </div>
+            <p className="text-sm font-bold text-slate-700">
               Pilih meja untuk memulai desain workspace-mu
             </p>
           </div>

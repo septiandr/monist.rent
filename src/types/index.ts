@@ -28,8 +28,10 @@ export interface Accessory {
 }
 
 export type AccessoryCategory = "monitor" | "lighting" | "greenery" | "other";
-
 export type AccessoryPosition = "left" | "right" | "center";
+export type CameraAngle = "perspective" | "focus" | "blueprint";
+export type MonitorWallpaper = "code" | "figma" | "surf" | "lofi";
+export type TimeOfDay = "day" | "sunset" | "night";
 
 export interface ExtraItem {
   id: string;
@@ -56,8 +58,12 @@ export interface WorkspaceState {
   isCheckoutOpen: boolean;
   activeTab: "chairs" | "desks" | "accessories";
   isStandingMode: boolean;
+  deskHeightCm: number;
   isLampActive: boolean;
-  isNightMode: boolean;
+  timeOfDay: TimeOfDay;
+  cameraAngle: CameraAngle;
+  monitorWallpaper: MonitorWallpaper;
+  isSoundEnabled: boolean;
 
   selectDesk: (desk: Desk) => void;
   selectChair: (chair: Chair) => void;
@@ -67,8 +73,12 @@ export interface WorkspaceState {
   closeCheckout: () => void;
   setActiveTab: (tab: "chairs" | "desks" | "accessories") => void;
   setStandingMode: (isStanding: boolean) => void;
+  setDeskHeightCm: (height: number) => void;
   setLampActive: (isActive: boolean) => void;
-  setNightMode: (isNight: boolean) => void;
+  setTimeOfDay: (time: TimeOfDay) => void;
+  setCameraAngle: (angle: CameraAngle) => void;
+  setMonitorWallpaper: (wallpaper: MonitorWallpaper) => void;
+  toggleSound: () => void;
   applyPreset: (presetId: "starter" | "powerhouse" | "executive") => void;
   clearWorkspace: () => void;
   getTotalPrice: () => number;
